@@ -1,10 +1,31 @@
 #!/bin/bash
+end=${1:-aac}
+station=${2:-radio3}
+
+#bbc_6music
+#bbc_1xtra
+#bbc_radio_fourfm
+#bbc_radio_one
+#bbc_radio_two
+
+time=${4:-90}
+Day=${3:-Mon}
+
+time=$((time*60))
+
 ~/sound/musicproc.sh
-rm ~/Music/progMon*.aac
+rm ~/Music/prog$Day*.$end
 cat ~/Music/playlists/stations.m3u
+
 j=0
-for i in `cat ~/Music/playlists/stations.m3u`
+for i in `sed -n "/$station/p" ~/Music/playlists/stations.m3u`
 do
 j=$((j+1))
-avconv -i $i  -codec: copy -t $((15*360)) ~/Music/progMon$j.aac
+echo avconv -i $i   -t $time ~/Music/prog$Day$j.$end
+avconv -i $i   -t $time ~/Music/prog$Day$j.$end
+if [ $j -eq 1 ]
+then
+	break
+fi
 done
+
