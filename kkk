@@ -1,0 +1,4 @@
+00 23 * * 1 /home/pi/sound/get.sh mp3 radio3 Mon 90
+00 19 * * 5 /home/pi/sound/get.sh mp3 6music Fri 120
+00 15 * * 6 /home/pi/sound/get.sh mp3 6music Sat 180
+00 19 * * 7 /home/pi/sound/get.sh mp3 1xtra Sun 120
