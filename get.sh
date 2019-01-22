@@ -1,12 +1,13 @@
 #!/bin/bash
 end=${1:-aac}
-station=${2:-radio3}
+station=${2:-radio_three}
 
 #bbc_6music
 #bbc_1xtra
 #bbc_radio_fourfm
 #bbc_radio_one
 #bbc_radio_two
+#bbc_radio_three
 
 time=${4:-90}
 Day=${3:-Mon}
