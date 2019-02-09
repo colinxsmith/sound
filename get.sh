@@ -14,8 +14,8 @@ Day=${3:-Mon}
 
 time=$((time*60))
 
-#~/sound/musicproc.sh
-cp ~/sound/streams.txt ~/Music/playlists/stations.m3u
+~/sound/musicproc.sh
+#cp ~/sound/streams.txt ~/Music/playlists/stations.m3u
 rm ~/Music/prog$Day*.$end
 cat ~/Music/playlists/stations.m3u
 
