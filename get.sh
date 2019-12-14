@@ -23,8 +23,8 @@ j=0
 for i in `sed -n "/$station/p" ~/Music/playlists/stations.m3u`
 do
 j=$((j+1))
-echo avconv -i $i   -t $time ~/Music/prog$Day$j.$end
-avconv -i $i   -t $time ~/Music/prog$Day$j.$end
+echo ffmpeg -i $i   -t $time ~/Music/prog$Day$j.$end
+ffmpeg -i $i   -t $time ~/Music/prog$Day$j.$end
 if [ $j -eq 1 ]
 then
 	break
