@@ -6,14 +6,14 @@ cd
 
 
 #youtube-dl -x --audio-format $fmt https://www.youtube.com/playlist?list=OLAK5uy_lcT87h1eIuzRBRkZZZ-lil10-Xt7uood4
-echo youtube-dl -x --audio-format $fmt "$1"
-youtube-dl -x --audio-format $fmt "$1"
+echo youtube-dl -x --audio-format $fmt "$1" -v --prefer-ffmpeg
+youtube-dl -x --audio-format $fmt "$1" -v --prefer-ffmpeg
 
-echo youtube-dl -x --audio-format $fmt "$2"
-youtube-dl -x --audio-format $fmt "$2"
+echo youtube-dl -x --audio-format $fmt "$2" -v --prefer-ffmpeg
+youtube-dl -x --audio-format $fmt "$2" -v --prefer-ffmpeg
 
-echo youtube-dl -x --audio-format $fmt "$3"
-youtube-dl -x --audio-format $fmt "$3"
+echo youtube-dl -x --audio-format $fmt "$3" -v --prefer-ffmpeg
+youtube-dl -x --audio-format $fmt "$3" -v --prefer-ffmpeg
 
 for i in *.$fmt
 do
