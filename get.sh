@@ -20,7 +20,7 @@ rm ~/Music/prog$Day*.$end
 cat ~/Music/playlists/stations.m3u
 
 j=0
-for i in `sed -n "/$station/p" ~/Music/playlists/stations.m3u`
+for i in `sed -n "/$station/p" ~/Music/playlists/*.m3u`
 do
 j=$((j+1))
 echo ffmpeg -i $i   -t $time ~/Music/prog$Day$j.$end
