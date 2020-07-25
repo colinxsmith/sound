@@ -31,3 +31,9 @@ then
 fi
 done
 
+if [ -f ~/Music/keep/prog$Day$j.mp3 ]
+then
+        mv ~/Music/keep/prog$Day$j.mp3 ~/Music
+fi
+
+ffmpeg -i ~/Music/prog$Day$j.$end  -ab 320k ~/Music/keep/prog$Day$j.mp3
