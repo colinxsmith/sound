@@ -11,7 +11,7 @@ station=${2:-radio_three}
 
 time=${4:-90}
 Day=${3:-Mon}
-nomp3=${5:1}
+nomp3=${5:-1}
 
 time=$((time*60))
 
