@@ -11,6 +11,7 @@ station=${2:-radio_three}
 
 time=${4:-90}
 Day=${3:-Mon}
+nomp3=${5:1}
 
 time=$((time*60))
 
@@ -36,4 +37,7 @@ then
         mv ~/Music/keep/prog$Day$j.mp3 ~/Music
 fi
 
+if [ $nomp3 -ne 1 ]
+then
 ffmpeg -i ~/Music/prog$Day$j.$end  -ab 320k ~/Music/keep/prog$Day$j.mp3
+fi
