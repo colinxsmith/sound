@@ -43,8 +43,8 @@
 35 6 * * 2 /home/pi/jezzer/getjez.sh >    jez`date +\%d-\%m-\%Y-\%a-\%T`
 35 4 * * 2 /home/pi/jezzer/getpaul.sh >  paul`date +\%d-\%m-\%Y-\%a-\%T`
 02 0 * * 1 /home/pi/sound/get.sh aac jazzhigh JEZ 60 2
-15 08 * * 1 /home/pi/sound/getJez.sh > newjez`date +\%d-\%m-\%Y-\%a-\%T`
-15 07 * * 2 /home/pi/sound/getJez.sh > newjez`date +\%d-\%m-\%Y-\%a-\%T`
+15 6 * * 1 /home/pi/sound/getJez.sh > newjez`date +\%d-\%m-\%Y-\%a-\%T`
+15 5 * * 2,3 /home/pi/sound/getJez.sh > newjez`date +\%d-\%m-\%Y-\%a-\%T`
 00 23 * * 1 /home/pi/sound/get.sh aac radio_three Mon 91
 00 19 * * 5 /home/pi/sound/get.sh aac 6music Fri 121
 00 15 * * 6 /home/pi/sound/get.sh aac 6music Sat 181
