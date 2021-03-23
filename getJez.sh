@@ -19,7 +19,8 @@ dayspast=$(echo $now-$last | awk -F- '{a=($1-$2)/24/3600;print int(a);}')
 echo -e $dayspast \\n
 found=$(echo $latest|sed -n "/$stamp/p")
 echo -e Latest: $latest, found: $found \\n
-curl $(curl -L https://planetradio.co.uk/jazz-fm/schedule/ | sed -n "s|https://down|\nhttps://down|gp" | sed -n "/somethin_else.*3\":\"$/s/mp3.*/mp3/p") > j3hour.mp3
+#curl $(curl -L https://planetradio.co.uk/jazz-fm/schedule/ | sed -n "s|https://down|\nhttps://down|gp" | sed -n "/somethin_else.*3\":\"$/s/mp3.*/mp3/p") > j3hour.mp3
+		curl $latest > j3hour.mp3
 ls -l j3hour.mp3
 if [ $(ls -l j3hour.mp3|awk '{print $5;}') -lt 10 ]
 then
@@ -36,7 +37,8 @@ do
   sleep 1800
   echo $(date), try to get from schedule
   echo $(curl -L https://planetradio.co.uk/jazz-fm/schedule/ | sed -n "s|https://down|\nhttps://down|gp" | sed -n "/somethin_else.*3\":\"$/s/mp3.*/mp3/p")
-  curl $(curl -L https://planetradio.co.uk/jazz-fm/schedule/ | sed -n "s|https://down|\nhttps://down|gp" | sed -n "/somethin_else.*3\":\"$/s/mp3.*/mp3/p") > j3hour.mp3
+#  curl $(curl -L https://planetradio.co.uk/jazz-fm/schedule/ | sed -n "s|https://down|\nhttps://down|gp" | sed -n "/somethin_else.*3\":\"$/s/mp3.*/mp3/p") > j3hour.mp3
+		curl $latest > j3hour.mp3
   ls -l j3hour.mp3
 done
 if [ $(ls -l j3hour.mp3|awk '{print $5;}') -gt 10 ]
