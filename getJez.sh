@@ -45,6 +45,6 @@ if [ $(ls -l j3hour.mp3|awk '{print $5;}') -gt 10 ]
 then
   echo -e $(date), update jez.mp3 \\n
   rm -rf jez.mp3
-  ffmpeg -ss 7200 -i j3hour.mp3 jez.mp3
+  ffmpeg -ss 7200 -t 3610 -i j3hour.mp3 jez.mp3
 fi
 echo -e Finished, $(date) \\n
