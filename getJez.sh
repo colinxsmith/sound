@@ -1,3 +1,5 @@
+#!/bin/bash
+cd ~/Music
 day=$(date +%w)
 
 today=$(date +%s)
