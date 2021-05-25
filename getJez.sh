@@ -22,7 +22,7 @@ do
   ls -l j3hour.mp3
 done
 
-if [ $(ls -l j3hour.mp3|awk '{print $5;}') -gt 10 ]
+if [ $(ls -l j3hour.mp3|awk '{print $5;}') -ge 200 ]
 then
   echo -e $(date), update jez.mp3 \\n
   rm -rf jez.mp3
