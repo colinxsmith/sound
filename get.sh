@@ -24,8 +24,8 @@ j=0
 for i in `sed -n "/$station/p" ~/Music/playlists/*.m3u`
 do
 j=$((j+1))
-echo ffmpeg -i $i -t $time - ab 320k ~/Music/prog$Day$j.$end
-ffmpeg -i $i   -t $time -ab 320k ~/Music/prog$Day$j.$end
+echo ffmpeg -i $i -t $time - ab 96k ~/Music/prog$Day$j.$end
+ffmpeg -i $i   -t $time -ab 96k ~/Music/prog$Day$j.$end
 if [ $j -eq 1 ]
 then
 	break
@@ -39,5 +39,5 @@ fi
 
 if [ $nomp3 -ne 1 ]
 then
-ffmpeg -i ~/Music/prog$Day$j.$end  -ab 320k ~/Music/keep/prog$Day$j.mp3
+ffmpeg -i ~/Music/prog$Day$j.$end  -ab 96k ~/Music/keep/prog$Day$j.mp3
 fi
