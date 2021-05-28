@@ -39,5 +39,5 @@ fi
 
 if [ $nomp3 -ne 1 ]
 then
-ffmpeg -i ~/Music/prog$Day$j.$end  -ab 96k ~/Music/keep/prog$Day$j.mp3
+ffmpeg -i ~/Music/prog$Day$j.$end  -ab 192k ~/Music/keep/prog$Day$j.mp3
 fi
