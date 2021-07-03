@@ -24,8 +24,8 @@ j=0
 for i in `sed -n "/$station/p" ~/Music/playlists/*.m3u`
 do
 j=$((j+1))
-echo ffmpeg -i $i -t $time - ab 128k ~/Music/prog$Day$j.$end
-ffmpeg -i $i   -t $time -ab 128k ~/Music/prog$Day$j.$end
+echo ffmpeg -i $i -t $time - ab 96k ~/Music/prog$Day$j.$end
+ffmpeg -i $i   -t $time -ab 96k ~/Music/prog$Day$j.$end
 if [ $j -eq 1 ]
 then
 	break
