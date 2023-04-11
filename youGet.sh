@@ -5,15 +5,15 @@ echo $HOME
 cd
 
 
-#youtube-dl -x --audio-format $fmt https://www.youtube.com/playlist?list=OLAK5uy_lcT87h1eIuzRBRkZZZ-lil10-Xt7uood4
-echo youtube-dl -x --audio-format $fmt "$1" -v --fixup --prefer-ffmpeg
-youtube-dl -x --audio-format $fmt "$1" -v --fixup --prefer-ffmpeg
+#yt-dlp -x --audio-format $fmt https://www.youtube.com/playlist?list=OLAK5uy_lcT87h1eIuzRBRkZZZ-lil10-Xt7uood4
+echo yt-dlp -x --audio-format $fmt "$1" -v --fixup --prefer-ffmpeg
+yt-dlp -x --audio-format $fmt "$1" -v 
 
-echo youtube-dl -x --audio-format $fmt "$2" -v --fixup --prefer-ffmpeg
-youtube-dl -x --audio-format $fmt "$2" -v --fixup --prefer-ffmpeg
+echo yt-dlp -x --audio-format $fmt "$2" -v --fixup --prefer-ffmpeg
+yt-dlp -x --audio-format $fmt "$2" -v
 
-echo youtube-dl -x --audio-format $fmt "$3" -v --fixup --prefer-ffmpeg
-youtube-dl -x --audio-format $fmt "$3" -v --fixup --prefer-ffmpeg
+echo yt-dlp -x --audio-format $fmt "$3" -v --fixup --prefer-ffmpeg
+yt-dlp -x --audio-format $fmt "$3" -v
 
 for i in *.$fmt
 do
