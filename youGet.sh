@@ -17,8 +17,8 @@ yt-dlp -x --audio-format $fmt "$3" -v
 
 for i in *.$fmt
 do
-echo cp "$i" $HOME/Music/$(echo $i | sed "s/ /_/g;s/\:/_/g;s/-[A-Z,a-z,0-9].*.$fmt/.$fmt/;s/ft\./ft/")
-cp "$i" $HOME/Music/$(echo $i | sed "s/ /_/g;s/\:/_/g;s/-[A-Z,a-z,0-9].*.$fmt/.$fmt/;s/ft\./ft/")
+echo cp "$i" $HOME/Music/$(echo $i | sed "s/ /_/g;s/\:/_/g;s/_[A-Z,a-z,0-9,_].*.$fmt/.$fmt/;s/ft\./ft/")
+cp "$i" $HOME/Music/$(echo $i | sed "s/ /_/g;s/\:/_/g;s/_[A-Z,a-z,0-9,_].*.$fmt/.$fmt/;s/ft\./ft/")
 done
 
 echo rm $HOME/*.$fmt
