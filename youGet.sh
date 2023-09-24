@@ -6,19 +6,19 @@ cd
 
 
 #yt-dlp -x --audio-format $fmt https://www.youtube.com/playlist?list=OLAK5uy_lcT87h1eIuzRBRkZZZ-lil10-Xt7uood4
-echo yt-dlp -x --audio-format $fmt "$1" -v --fixup --prefer-ffmpeg
-yt-dlp -x --audio-format $fmt "$1" -v 
+#https://youtu.be/xuE8wNYdQV4?si=O-M028DDaQ0Z4soo
+music=$(echo $1 | sed "s|https://you.*/||;s/?.*//")
+echo music $music
 
-echo yt-dlp -x --audio-format $fmt "$2" -v --fixup --prefer-ffmpeg
-yt-dlp -x --audio-format $fmt "$2" -v
+echo yt-dlp -x --audio-format $fmt "$music" -v --fixup --prefer-ffmpeg
+yt-dlp -x --audio-format $fmt "$music" -v 
 
-echo yt-dlp -x --audio-format $fmt "$3" -v --fixup --prefer-ffmpeg
-yt-dlp -x --audio-format $fmt "$3" -v
 
 for i in *.$fmt
 do
-echo cp "$i" $HOME/Music/$(echo $i | sed "s/ /_/g;s/\:/_/g;s/_[A-Z,a-z,0-9,_].*.$fmt/.$fmt/;s/ft\./ft/")
-cp "$i" $HOME/Music/$(echo $i | sed "s/ /_/g;s/\:/_/g;s/_[A-Z,a-z,0-9,_].*.$fmt/.$fmt/;s/ft\./ft/")
+newname=$(echo $i | sed "s/ /_/g;s/\:/_/g;s/_\[$music.*.$fmt/.$fmt/;s/ft\./ft/")
+echo cp "$i" $HOME/Music/$newname
+cp "$i" $HOME/Music/$newname
 done
 
 echo rm $HOME/*.$fmt
