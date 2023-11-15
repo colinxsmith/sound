@@ -27,6 +27,6 @@ then
   ls -l j3hour.mp3
   echo -e $(date), update jez.mp3 \\n
   rm -rf jez.mp3
-  ffmpeg -ss 7200 -t 3430 -i j3hour.mp3 jez.mp3
+  ffmpeg -sseof -3600 -i j3hour.mp3 jez.mp3
 fi
 echo -e Finished, $(date) \\n
