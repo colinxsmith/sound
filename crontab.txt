@@ -38,13 +38,13 @@
 00 00 * * * /home/pi/transferpi.sh >  gs`date +\%T`
 #00 06 * * * /home/pi/transfermusic.sh > musiclog`date +\%T`
 #45 07 * * 6 /home/pi/getprice.sh
-35 6 * * 1 /home/pi/jezzer/getjez.sh >    jez`date +\%d-\%m-\%Y-\%a-\%T`
-15 21 * * 1 /home/pi/jezzer/getjez.sh >   jez`date +\%d-\%m-\%Y-\%a-\%T`
-35 6 * * 2 /home/pi/jezzer/getjez.sh >    jez`date +\%d-\%m-\%Y-\%a-\%T`
-35 4 * * 2 /home/pi/jezzer/getpaul.sh >  paul`date +\%d-\%m-\%Y-\%a-\%T`
+#35 6 * * 1 /home/pi/jezzer/getjez.sh >    jez`date +\%d-\%m-\%Y-\%a-\%T`
+#15 21 * * 1 /home/pi/jezzer/getjez.sh >   jez`date +\%d-\%m-\%Y-\%a-\%T`
+#35 6 * * 2 /home/pi/jezzer/getjez.sh >    jez`date +\%d-\%m-\%Y-\%a-\%T`
+#35 4 * * 2 /home/pi/jezzer/getpaul.sh >  paul`date +\%d-\%m-\%Y-\%a-\%T`
 02 0 * * 1 /home/pi/sound/get.sh aac jazzhigh JEZ 60 2
 15 6 * * 1 /home/pi/sound/getJez.sh > newjez`date +\%d-\%m-\%Y-\%a-\%T`
-15 5 * * 2,3 /home/pi/sound/getJez.sh > newjez`date +\%d-\%m-\%Y-\%a-\%T`
+30 6 * * 2,3 /home/pi/sound/getJez.sh > newjez`date +\%d-\%m-\%Y-\%a-\%T`
 00 23 * * 1 /home/pi/sound/get.sh aac radio_three Mon 91
 00 19 * * 5 /home/pi/sound/get.sh aac 6music Fri 121
 00 15 * * 6 /home/pi/sound/get.sh aac 6music Sat 181
@@ -60,4 +60,7 @@
 #20 0 * * 3 /home/pi/sound/youGet.sh IJr9idAJdz0 > /home/pi/you.log
 #39 13 * * 6 /home/pi/sound/youGet.sh a7k20egMJGw > /home/pi/you.log
 #2 21 * * 5 /home/pi/sound/youGet.sh PLiN-7mukU_RHzT8A6Q0flHzfNw4dUjtAP > /home/pi/you.log
-#35 18 * * 5 /home/pi/sound/youGet.sh 6-GO7w678sQ
+#14 0 * * 4 /home/pi/sound/youGet.sh  XOWWZiKC2qw >you.log
+#14 18 * * 6 /home/pi/sound/youGet.sh   npnt5AlUEcU >you.log
+#02 14 * * 3 /home/pi/sound/youGet.sh   g97evRfmBH8 >you.log
+#00 9 * * 1 /home/pi/jerry_lee.sh
