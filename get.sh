@@ -15,8 +15,8 @@ nomp3=${5:-1}
 
 time=$((time*60))
 
-~/sound/musicproc.sh
-#cp ~/sound/streams.txt ~/Music/playlists/stations.m3u
+#~/sound/musicproc.sh
+cp ~/sound/stations.m3u ~/Music/playlists/stations.m3u
 rm ~/Music/prog$Day*.$end
 cat ~/Music/playlists/stations.m3u
 
