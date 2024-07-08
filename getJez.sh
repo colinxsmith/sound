@@ -5,10 +5,12 @@ day=$(date +%w)
 today=$(date +%s)
 off=$(($(($((day))))*24*60*60))
 before=$(($today-$off))
+base=bauerod.sharp-stream.com
+base=la.planetradio.co.uk
 
 date --date=@$(($before)) +%Y%m%d
 
-file=https://bauerod.sharp-stream.com/jazz/Jazz-$(date --date=@$(($before)) +%Y%m%d)-2200.mp3
+file=https://$base/jazz/Jazz-$(date --date=@$(($before)) +%Y%m%d)-2100.mp3
 echo $file
 
 curl -L $file > j3hour.mp3
