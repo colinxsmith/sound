@@ -7,7 +7,7 @@ off=$(($(($((day))))*24*60*60))
 before=$(($today-$off))
 base=bauerod.sharp-stream.com
 base=la.planetradio.co.uk
-start=2100
+start=2200
 
 date --date=@$(($before)) +%Y%m%d
 
