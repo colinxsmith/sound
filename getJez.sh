@@ -8,7 +8,8 @@ before=$(($today-$off))
 base=bauerod.sharp-stream.com
 base=la.planetradio.co.uk
 start=2200
-
+secsoff=-2700
+Dr
 date --date=@$(($before)) +%Y%m%d
 
 file=https://$base/jazz/Jazz-$(date --date=@$(($before)) +%Y%m%d)-$start.mp3
@@ -30,6 +31,6 @@ then
   ls -l j3hour.mp3
   echo -e $(date), update jez.mp3 \\n
   rm -rf jez.mp3
-  ffmpeg -sseof -3700 -i j3hour.mp3 jez.mp3
+  ffmpeg -sseof $secsoff -i j3hour.mp3 jez.mp3
 fi
 echo -e Finished, $(date) \\n
