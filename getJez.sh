@@ -9,7 +9,7 @@ base=bauerod.sharp-stream.com
 base=la.planetradio.co.uk
 start=2200
 secsoff=-2700
-Dr
+
 date --date=@$(($before)) +%Y%m%d
 
 file=https://$base/jazz/Jazz-$(date --date=@$(($before)) +%Y%m%d)-$start.mp3
