@@ -12,5 +12,5 @@ int main(
                    key ? key:"NULL", salt ? salt:"NULL", enc ? enc:"NULL");
           return 0;
 }
- 2002  gcc -O2 crypter.c  -lcrypt -o crypter
- 2009  history |grep 2002 >> sound/crypter.c 
+/* gcc -O2 crypter.c  -lcrypt -o crypter*/
+
