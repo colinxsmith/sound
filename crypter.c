@@ -8,9 +8,11 @@ int main(
     char *key = argv[1];
       char *salt = argv[2];
         char *enc = crypt(key, salt);
-          printf("key = \"%s\", salt = \"%s\", enc = \"%s\"\n",
+          fprintf(stderr,"On standard error:key = \"%s\", salt = \"%s\", enc = \"%s\"\n",
                    key ? key:"NULL", salt ? salt:"NULL", enc ? enc:"NULL");
-          return 0;
+
+        printf("%s\n",enc);
+        return 0;
 }
- 2002  gcc -O2 crypter.c  -lcrypt -o crypter
- 2009  history |grep 2002 >> sound/crypter.c 
+/* gcc -O2 crypter.c  -lcrypt -o crypter*/
+
