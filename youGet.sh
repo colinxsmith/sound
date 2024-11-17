@@ -11,7 +11,7 @@ music=$(echo $1 | sed "s|https://you.*/||;s/?.*//")
 echo music $music
 
 echo yt-dlp -x --audio-format $fmt "$music" -v --fixup --prefer-ffmpeg
-yt-dlp -x --audio-format $fmt "$music" -v 
+yt-dlp -x --default-search "ytsearch" --audio-format $fmt "$music" -v 
 
 
 for i in *.$fmt
