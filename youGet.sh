@@ -10,7 +10,7 @@ cd
 music=$(echo $1 | sed "s|https://you.*/||;s/?.*//")
 echo music $music
 
-echo yt-dlp -x --audio-format $fmt "$music" -v --fixup --prefer-ffmpeg
+echo yt-dlp -x --default-search "ytsearch" --audio-format $fmt "$music" -v --fixup --prefer-ffmpeg
 yt-dlp -x --default-search "ytsearch" --audio-format $fmt "$music" -v 
 
 
