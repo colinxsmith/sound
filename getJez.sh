@@ -7,6 +7,7 @@ off=$(($(($((day))))*24*60*60))
 before=$(($today-$off))
 base=bauerod.sharp-stream.com
 base=la.planetradio.co.uk
+base=la.hellorayo.co.uk
 start=2200
 secsoff=-3600
 
