@@ -54,4 +54,6 @@ cp df.mp3 ~/Music/j3hour.mp3
     then
 echo 5pm on Saturday
     fi
+else
+curl -L $file > jazz.mp3
 fi
