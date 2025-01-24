@@ -12,7 +12,8 @@ echo start at time $start on $(date --date=@$(($before)) +%Y%m%d)
 
 file=https://$base/jazz/Jazz-$(date --date=@$(($before)) +%Y%m%d)-$start.mp3
 echo $file
-#curl -L $file > music.mp3
+
+cd ~/sound
 
 if [ $start = '2200' ]
 then 
