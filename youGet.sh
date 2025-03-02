@@ -18,7 +18,8 @@ for i in *.$fmt
 do
 newname=$(echo $i | sed "s/ /_/g;s/\:/_/g;s/_\[$music.*.$fmt/.$fmt/;s/ft\./ft/")
 newname=$(echo $newname|sed "s/—/-/g")
-newnam=$(echo $newname|sed "s/\[.*\]//;s/(.*)//")
+newname=$(echo "$newname"|sed "s/\[.*\]//;s/(.*)//")
+echo $newname
 echo cp "$i" $HOME/Music/$newname
 cp "$i" $HOME/Music/$newname
 done
