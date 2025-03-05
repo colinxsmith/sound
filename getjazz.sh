@@ -1,8 +1,8 @@
 #!/bin/sh
 #Get any program from Jazz FM
 #DATE is the start time of the program
-DATE=${1:-20250112}
-TIME=${2:-2200}
+DATE=${1:-20250118}
+TIME=${2:-1800}
 #both URLs work
 URL1=hellorayo
 URL2=planetradio
