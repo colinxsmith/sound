@@ -1,0 +1,6 @@
+#!/bin/bash
+#start time is around 6:40am
+ffmpeg -i "https://lstn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=320000" -c copy /home/pi/Music/names_in_songs.m4a &
+procjob=$!
+sleep 10m
+kill $procjob
