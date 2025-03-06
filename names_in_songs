@@ -1,4 +1,5 @@
 #!/bin/bash
+file=${1:-names.m4a}
 #start time is around 6:40am
 rm /home/pi/Music/names_in_songs.m4a
-ffmpeg -i "https://lstn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=320000" -t 600 -c copy /home/pi/Music/names_in_songs.m4a 
+ffmpeg -i "https://lstn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=320000" -t 600 -c copy /home/pi/Music/$file

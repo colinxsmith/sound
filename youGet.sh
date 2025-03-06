@@ -19,6 +19,9 @@ do
 newname=$(echo $i | sed "s/ /_/g;s/\:/_/g;s/_\[$music.*.$fmt/.$fmt/;s/ft\./ft/")
 newname=$(echo "$newname"|sed "s/—/-/g")
 newname=$(echo "$newname"|sed "s/\[.*\]//;s/(.*)//")
+newname=$(echo "$newname"|sed "s/_\././")
+newname=$(echo "$newname"|sed "s/_\././")
+
 echo $newname
 echo cp "$i" $HOME/Music/$newname
 cp "$i" $HOME/Music/$newname
