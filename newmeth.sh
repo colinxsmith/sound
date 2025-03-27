@@ -59,3 +59,4 @@ echo 5pm on Saturday
 else
 curl -L $file > jazz.mp3
 fi
+mpc --wait update 

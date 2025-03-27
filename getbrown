@@ -1,5 +1,5 @@
 #!/bin/bash
-tim=$(date +%d_%m_%Y)
+tim=$(date +%d_%m_%Y:%H:%M:%S)
 file=/home/pi/sound/Brownswood_Basement
 length=$(echo 1234|awk '{ print 60*60*4 }') #4 hour programme
 echo $length

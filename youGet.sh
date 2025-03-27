@@ -29,3 +29,4 @@ done
 
 echo rm $HOME/*.$fmt
 rm $HOME/*.$fmt
+mpc --wait update 
