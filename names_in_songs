@@ -1,9 +1,11 @@
 #!/bin/bash
+MPD_HOST=new64.local
 #41 06 * * 3 /home/pi/sound/names_in_songs > name`date +\%d-\%m-\%Y-\%T`
 #11 14 * * 3 /home/pi/sound/names_in_songs names2.m4a > name`date +\%d-\%m-\%Y-\%T`
 #start time is around 6:40am and 14:10
 file=${1:-names.m4a}
-length=${2:-37:00}
+length=${2:-15:00}
 rm /home/pi/Music/$file
 ffmpeg -i "https://lstn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=320000" -t $length -c copy /home/pi/Music/$file
+scp /home/pi/Music/$file pi@new64.local:/home/pi/Music
 mpc --wait update
