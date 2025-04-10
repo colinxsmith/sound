@@ -1,10 +1,14 @@
 #!/bin/bash
 now=$(date +%d_%m_%Y_%T)
 file=record$now.mp3
-length=${1:-03:00:00}
+length=${1:-03\:00\:00}
 rm /home/pi/sound/"$file"
-ffmpeg -i "https://lstn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=320000" -t $length  -ab 320k /home/pi/sound/"$file"
-id3v2 -t "6 music at $now" -a "Length: $length seconds" /home/pi/sound/"$file"
+#ffmpeg -i "https://lstn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=96000" -ab 320k -to $length /home/pi/sound/"$file"
+echo Start $(date)
+ffmpeg -to $length -i "https://lstn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=320000" -ab 320k /home/pi/sound/"$file"
+echo End $(date)
+id3v2 -c "$(uname -a)" -y $(date +%Y) -A "$(uname -a)" -t "6 music at $now" -a "Length: $length " /home/pi/sound/"$file"
 id3v2 -l /home/pi/sound/"$file"
 cp /home/pi/sound/"$file" /home/pi/Music/"$file" 
 mpc --wait update
+mpc add "$file"
