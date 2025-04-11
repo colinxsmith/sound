@@ -6,7 +6,7 @@ file=$1
 length=${2:-25\:00}
 rm /home/pi/Music/$file
 echo start $(date)
-ffmpeg -i "https://lstn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=320000" -to $length -c copy /home/pi/Music/$file
+ffmpeg -to $length -i "https://lstn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=320000" -c copy /home/pi/Music/$file &> /dev/null
 echo end $(date)
 scp /home/pi/Music/$file pi@new64.local:/home/pi/Music
 mpc -h new64.local --wait update
