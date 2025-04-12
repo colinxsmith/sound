@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+len=${1:-20\:00}
+curl http://bookworm.local:1310/dave?record6=2\&record6time=$len
+scp pi@bookworm.local:/home/pi/sound/*.mp3 /home/pi/Music
+file=$(ssh pi@bookworm.local "cd /home/pi/sound;ls *.mp3")
+echo $file
+mpc --wait update
+mpc add $file

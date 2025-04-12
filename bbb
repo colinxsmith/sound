@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+curl http://bookworm.local:1310/dave?names=2\&namestime=25\:00
+scp pi@bookworm.local:/home/pi/Music/names2.m4a /home/pi/Music
