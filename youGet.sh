@@ -30,3 +30,19 @@ done
 echo rm $HOME/*.$fmt
 rm $HOME/*.$fmt
 mpc --wait update 
+
+cd Music
+i=$newname
+ffmpeg -i "$i" -ab 320k "${i%.m4a}.mp3"
+
+tt=$(ls -l --time-style +%s "${i%.m4a}.mp3"|awk '{print $6}')
+echo $tt
+art=$(echo "${i%.m4a}.mp3" |awk -F "-" '{print $1}'|sed "s/_/ /g")
+tit=$(echo "${i%.m4a}.mp3" |awk -F "-" '{print $2}'|sed "s/_/ /g;s/\.mp3//g")
+id3v2 -A "BBC Recording" -a "$art" -t "$tit" "${i%.m4a}.mp3"
+id3v2 -c "$(date +%d-%m-%Y) $(uname -a)" "${i%.m4a}.mp3"
+id3v2 -l "${i%.m4a}.mp3"
+scp "${i%.m4a}.mp3" pi@new64.local:~/Music/mp3
+mpc -h new64.local --wait update
+mpc -h new64.local add mp3/"${i%.m4a}.mp3"
+
