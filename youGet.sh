@@ -42,7 +42,9 @@ tit=$(echo "${i%.m4a}.mp3" |awk -F "-" '{print $2}'|sed "s/_/ /g;s/\.mp3//g")
 id3v2 -A "BBC Recording" -a "$art" -t "$tit" "${i%.m4a}.mp3"
 id3v2 -c "$(date +%d-%m-%Y) $(uname -a)" "${i%.m4a}.mp3"
 id3v2 -l "${i%.m4a}.mp3"
-scp "${i%.m4a}.mp3" pi@new64.local:~/Music/mp3
-mpc -h new64.local --wait update
-mpc -h new64.local add mp3/"${i%.m4a}.mp3"
+#edit here to correct action on ubuntu
+#scp "${i%.m4a}.mp3" pi@new64.local:~/Music/mp3
+cp "${i%.m4a}.mp3" mp3
+mpc --wait update
+mpc add mp3/"${i%.m4a}.mp3"
 
