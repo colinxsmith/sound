@@ -4,10 +4,20 @@ echo $now
 server_place=new64
 file=record$now.mp3
 length=${1:-03\:00\:00}
+if [ $(uname -n) != $server_place ]; then
 rm /home/colin/sound/"$file"
+fi
+if [ $(uname -n) = $server_place ]; then
+rm /home/pi/sound/"$file"
+fi
 #ffmpeg -i "https://lstn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=96000" -ab 320k -to $length /home/colin/sound/"$file"
 echo Start $(date)
+if [ $(uname -n) != $server_place ]; then
 ffmpeg -to $length -i "https://lstn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=320000" -ab 320k /home/colin/sound/"$file"
+fi
+if [ $(uname -n) = $server_place ]; then
+ffmpeg -to $length -i "https://lstn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=320000" -ab 320k /home/pi/sound/"$file"
+fi
 echo End $(date)
 id3v2 -c "$(uname -a)" -y $(date +%Y) -A "$(uname -a)" -t "6 music at $now" -a "Length: $length " /home/colin/sound/"$file"
 id3v2 -l /home/colin/sound/"$file"
