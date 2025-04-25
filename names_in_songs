@@ -3,9 +3,15 @@
 #11 14 * * 3 /home/pi/sound/names_in_songs names2.m4a > name`date +\%d-\%m-\%Y-\%T`
 #start time is around 6:40am and 14:10
 file=${1:-names.m4a}
-length=${2:-07\:00}
+length=${2:-27\:00}
+colin=${3:-colin}
+new64=${4:-new64}
 rm /home/pi/Music/$file
 echo Start $(date)
-ffmpeg -to $length -i "https://lstn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=320000" -c copy  /home/pi/Music/$file
+ffmpeg -to $length -i "https://lstn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=320000" -c copy  /home/$colin/Music/$file
+if [ $(uname -n) != $new64 ]; then
+  scp /home/$colin/Music/$file pi@$new64.local:/home/pi/Music
+  export MPD_HOST=$new64.local
+fi
 echo Finish $(date)
 mpc --wait update
