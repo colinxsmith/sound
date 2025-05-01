@@ -2,7 +2,7 @@
 length=${1:-03\:00\:00}
 colin=${2:-colin}
 server_place=new64
-now="$(date +%d_%m_%Y_%T)_$(uname -m -n -s|sed 's/ /-/'g)"
+now="$(date +%a-%d_%m_%Y_%T)_$(uname -m -n -s|sed 's/ /-/'g)"
 echo $now
 file=record$now.mp3
 if [ $(uname -n) != $server_place ]; then

@@ -1,6 +1,7 @@
 #!/bin/sh
 PATH=$PATH:/usr/local/bin
 fmt=m4a
+new64=new64
 echo $HOME
 cd
 
@@ -40,10 +41,13 @@ echo $tt
 art=$(echo "${i%.m4a}.mp3" |awk -F "-" '{print $1}'|sed "s/_/ /g")
 tit=$(echo "${i%.m4a}.mp3" |awk -F "-" '{print $2}'|sed "s/_/ /g;s/\.mp3//g")
 id3v2 -A "BBC Recording" -a "$art" -t "$tit" "${i%.m4a}.mp3"
-id3v2 -c "$(date +%d-%m-%Y) $(uname -a)" "${i%.m4a}.mp3"
+id3v2 -c "$(date +%a\ %d-%m-%Y) $(uname -a)" "${i%.m4a}.mp3"
 id3v2 -l "${i%.m4a}.mp3"
 #edit here to correct action on ubuntu
-#scp "${i%.m4a}.mp3" pi@new64.local:~/Music/mp3
+if [ $(uname -n) != $new64 ]; then
+  scp  "${i%.m4a}.mp3" pi@$new64.local:~/Music/mp3
+  export MPD_HOST=$new64.local
+fi
 cp "${i%.m4a}.mp3" mp3
 mpc --wait update
 mpc add mp3/"${i%.m4a}.mp3"
