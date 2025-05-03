@@ -1,12 +1,13 @@
 #!/bin/bash
-echo newmeth.sh \<start time eg. 2200 for 10pm\> \<day of week: 0 is Sunday 1 is Saturday \(one day before\)\>
+echo $0 \<time e.g. 2200 for start of recording\> \<day of week Monday is 1\>
 day=$(date +%w)
 today=$(date +%s)
-off=$(($(($((day + ${2:-0}))))*24*60*60))
+off=$(echo $day-${2:-7}|awk -F "-" '{ print ($1-$2>=0?$1-$2:7+$1-$2)*24*3600; }')
+echo $off
 before=$(($today-$off))
+echo $before
 base=la.hellorayo.co.uk
 start=${1:-2200}
-secsoff=-3600
 
 echo start at time $start on $(date --date=@$(($before)) +%Y%m%d)
 
@@ -17,20 +18,20 @@ cd ~/sound
 
 if [ $start = '2200' ]
 then 
-    if [ ${2:-0} = '0' ]
+    if [ ${2:-0} = '7' ]
     then
 echo 10pm on Sunday
 curl -L $file > temp.mp3
-if [ $(ls -l temp.mp3 | awk '{ print $5 }') -gt 1000 ]; then mv temp.mp3 jn.mp3;fi
+if [ $(ls -l temp.mp3 | awk '{ print $5 }') -gt 1000 ]; then id3v2 -c "$(date +%a-%d-%m-%Y:%T) $(uname -a)" temp.mp3; mv temp.mp3 jn.mp3;fi
 
 rm ~/Music/j3hour.mp3
 cp jn.mp3 ~/Music/j3hour.mp3
 cat df.mp3 >> ~/Music/j3hour.mp3
-    elif [ ${2:-0} = '1' ]
+    elif [ ${2:-0} = '6' ]
     then
 echo 10pm on Saturday
 curl -L $file > temp.mp3
-if [ $(ls -l temp.mp3 | awk '{ print $5 }') -gt 1000 ]; then mv temp.mp3 ny.mp3;fi
+if [ $(ls -l temp.mp3 | awk '{ print $5 }') -gt 1000 ]; then id3v2 -c "$(date +%a-%d-%m-%Y:%T) $(uname -a)" temp.mp3; mv temp.mp3 ny.mp3;fi
 
 rm ~/Music/j3hour.mp3
 cp ny.mp3 ~/Music/j3hour.mp3
@@ -38,47 +39,47 @@ cat cp.mp3 >> ~/Music/j3hour.mp3
     fi
 elif [ $start = '1800' ]
 then
-    if [ ${2:-0} = '0' ]
+    if [ ${2:-0} = '7' ]
     then
 echo 6pm on Sunday
-    elif [ ${2:-0} = '1' ]
+    elif [ ${2:-0} = '6' ]
     then
 echo 6pm on Saturday
 curl -L $file > temp.mp3
-if [ $(ls -l temp.mp3 | awk '{ print $5 }') -gt 1000 ]; then mv temp.mp3 cp.mp3;fi
+if [ $(ls -l temp.mp3 | awk '{ print $5 }') -gt 1000 ]; then id3v2 -c "$(date +%a-%d-%m-%Y:%T) $(uname -a)" temp.mp3; mv temp.mp3 cp.mp3;fi
 
 rm ~/Music/j3hour.mp3
 cp cp.mp3 ~/Music/j3hour.mp3
     fi
 elif [ $start = '2100' ]
 then
-    if [ ${2:-0} = '2' ]
+    if [ ${2:-0} = '5' ]
     then
 echo 9pm on Friday
 echo $(ls -l af.mp3 | awk '{ print $5 }')
 curl -L $file > temp.mp3
-if [ $(ls -l temp.mp3 | awk '{ print $5 }') -gt 1000 ]; then mv temp.mp3 af.mp3;fi
+if [ $(ls -l temp.mp3 | awk '{ print $5 }') -gt 1000 ]; then id3v2 -c "$(date +%a-%d-%m-%Y:%T) $(uname -a)" temp.mp3; mv temp.mp3 af.mp3;fi
 
 rm ~/Music/j3hour.mp3
 cp af.mp3 ~/Music/j3hour.mp3
     fi
 elif [ $start = '1700' ]
 then
-    if [ ${2:-0} = '0' ]
+    if [ ${2:-0} = '7' ]
     then
 echo 5pm on Sunday
 curl -L $file > temp.mp3
-if [ $(ls -l temp.mp3 | awk '{ print $5 }') -gt 1000 ]; then mv temp.mp3 df.mp3;fi
+if [ $(ls -l temp.mp3 | awk '{ print $5 }') -gt 1000 ]; then id3v2 -c "$(date +%a-%d-%m-%Y:%T) $(uname -a)" temp.mp3; mv temp.mp3 df.mp3;fi
 
 rm ~/Music/j3hour.mp3
 cp df.mp3 ~/Music/j3hour.mp3
-    elif [ ${2:-0} = '1' ]
+    elif [ ${2:-0} = '6' ]
     then
 echo 5pm on Saturday
     fi
 else
 curl -L $file > temp.mp3
-if [ $(ls -l temp.mp3 | awk '{ print $5 }') -gt 1000 ]; then mv temp.mp3 jazz.mp3;fi
+if [ $(ls -l temp.mp3 | awk '{ print $5 }') -gt 1000 ]; then id3v2 -c "$(date +%a-%d-%m-%Y:%T) $(uname -a)" temp.mp3; mv temp.mp3 jazz.mp3;fi
 
 fi
 mpc --wait update 
