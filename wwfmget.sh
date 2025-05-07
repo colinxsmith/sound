@@ -10,4 +10,4 @@ uname -n
 echo $MPD_HOST
 
 cd
-sound/youGet.sh "$track"
+sound/youGet.sh "$track" 1

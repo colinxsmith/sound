@@ -2,13 +2,22 @@
 PATH=$PATH:/usr/local/bin
 fmt=m4a
 new64=new64
+getter=$(echo $1|sed "s/ /_/g")
+use=$2
+tester=$(echo $getter | sed -n "/-/p")
+echo $getter,$tester
+if [ $getter != "$tester" ]; then getter="$getter - $getter"; fi
+getter=$(echo $getter|sed "s/-$/- no title/")
+getter=$(echo $getter|sed "s/_/ /g")
+echo after $getter
+
 echo $HOME
 cd
 
 
 #yt-dlp -x --audio-format $fmt https://www.youtube.com/playlist?list=OLAK5uy_lcT87h1eIuzRBRkZZZ-lil10-Xt7uood4
 #https://youtu.be/xuE8wNYdQV4?si=O-M028DDaQ0Z4soo
-music=$(echo $1 | sed "s|https://you.*/||;s/?.*//")
+music=$(echo $getter | sed "s|https://you.*/||;s/?.*//")
 echo music $music
 
 echo yt-dlp -x --default-search "ytsearch" --audio-format $fmt "$music" -v --fixup --prefer-ffmpeg
@@ -41,6 +50,7 @@ echo $tt
 art=$(echo "${i%.m4a}.mp3" |awk -F "-" '{print $1}'|sed "s/_/ /g")
 tit=$(echo "${i%.m4a}.mp3" |awk -F "-" '{print $2}'|sed "s/_/ /g;s/\.mp3//g")
 id3v2 -A "BBC Recording" -a "$art" -t "$tit" "${i%.m4a}.mp3"
+if [ $use ]; then echo use "${i%.m4a}.mp3" with "$music";id3v2 -t "$(echo $music | awk -F "-" '{ print $2 }')" -a "$(echo $music | awk -F "-" '{ print $1 }')" "${i%.m4a}.mp3"; fi
 id3v2 -c "$(date +%a\ %d-%m-%Y) $(uname -a)" "${i%.m4a}.mp3"
 id3v2 -l "${i%.m4a}.mp3"
 #edit here to correct action on ubuntu

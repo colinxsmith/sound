@@ -8,7 +8,18 @@ colin=${3:-colin}
 new64=${4:-new64}
 rm /home/$colin/Music/$file
 echo Start $(date)
-ffmpeg -to $length -i "https://lstn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=320000" -c copy  /home/$colin/Music/$file
+ffmpeg -to "$length" -i "https://lstn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=320000" -c copy  /home/$colin/Music/$file
+len=$(ls -l /home/$colin/Music/$file | awk '{ print $5 }')
+if [ -f /home/$colin/Music/$file ]; then
+  echo $len file made /home/$colin/Music/$file
+  if [ $len -lt 50000 ]; then 
+    echo try again
+    rm /home/$colin/Music/$file
+    ffmpeg -to $length -i "https://lstn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=320000" -c copy  /home/$colin/Music/$file
+  fi
+else
+  echo nfile /home/$colin/Music/$file
+fi
 if [ $(uname -n) != $new64 ]; then
   scp /home/$colin/Music/$file pi@$new64.local:/home/pi/Music
   export MPD_HOST=$new64.local
