@@ -5,7 +5,7 @@
 # and what command to run for the task
 # 
 # To define the time you can provide concrete values for
-# minute (m), hour (h), day of month (dom), month (mon),
+#ckme1 minute (m), hour (h), day of month (dom), month (mon),
 # and day of week (dow) or use '*' in these fields (for 'any').
 # 
 # Notice that tasks will be started based on the cron's system
@@ -21,21 +21,41 @@
 # For more information see the manual pages of crontab(5) and cron(8)
 # 
 # m h  dom mon dow   command
-00 04 * * * /home/pi/getprog.sh > pvr`date +\%d-\%m-\%Y-\%T`
-00 19 * * 6 /home/pi/getprog.sh > pvr`date +\%d-\%m-\%Y-\%T`
-40 22 * * 6 /home/pi/getprog.sh > pvr`date +\%d-\%m-\%Y-\%T`
-30 20 * * 7 /home/pi/getprog.sh > pvr`date +\%d-\%m-\%Y-\%T`
-40 22 * * 7 /home/pi/getprog.sh > pvr`date +\%d-\%m-\%Y-\%T`
-30 21 * * 5 /home/pi/getprog.sh > pvr`date +\%d-\%m-\%Y-\%T`
-40 6 * * 7 /home/pi/sound/newmeth.sh 2200 1 > newjez`date +\%d-\%m-\%Y-\%a-\%T`
-30 6 * * 7 /home/pi/sound/newmeth.sh 1800 1 > newjez`date +\%d-\%m-\%Y-\%a-\%T`
-30 6 * * 4 /home/pi/sound/newmeth.sh 2200 1 > newjez`date +\%d-\%m-\%Y-\%a-\%T`
-30 6 * * 5 /home/pi/sound/newmeth.sh 2200 1 > newjez`date +\%d-\%m-\%Y-\%a-\%T`
-30 6 * * 6 /home/pi/sound/newmeth.sh 2200 1 > newjez`date +\%d-\%m-\%Y-\%a-\%T`
-30 6 * * 1 /home/pi/sound/newmeth.sh 2200 0 > newjez`date +\%d-\%m-\%Y-\%a-\%T`
-30 6 * * 2 /home/pi/sound/newmeth.sh 2200 0 > newjez`date +\%d-\%m-\%Y-\%a-\%T`
-30 6 * * 3 /home/pi/sound/newmeth.sh 2200 0 > newjez`date +\%d-\%m-\%Y-\%a-\%T`
-#15 6 * * 1 /home/pi/sound/getJez.sh > newjez`date +\%d-\%m-\%Y-\%a-\%T`
-#30 6 * * 2,3 /home/pi/sound/getJez.sh > newjez`date +\%d-\%m-\%Y-\%a-\%T`
+00 08 * * 4 /home/pi/sound/getbrown > brown`date +\%a-\%d-\%m-\%Y-\%T`
+#00 10 * * 6 /home/pi/sound/record 03:00:00 pi > record`date +\%a-\%d-\%m-\%Y-\%T`
+#00 06 * * 7 /home/pi/sound/record 02:00:00 pi > record`date +\%a-\%d-\%m-\%Y-\%T`
+#00 16 * * 7 /home/pi/sound/record 02:00:00 pi > record`date +\%a-\%d-\%m-\%Y-\%T`
+#15 08 * * 1,2,3,4,5 /home/pi/sound/record 3600 pi > record`date +\%a-\%d-\%m-\%Y-\%T`
+#41 06 * * 3 /home/pi/sound/names_in_songs > name`date +\%a-\%d-\%m-\%Y-\%T`
+#11 14 * * 3 /home/pi/sound/names_in_songs names2.m4a > name`date +\%a-\%d-\%m-\%Y-\%T`
+42 06 * * 3 /home/pi/sound/aaa > name`date +\%a-\%d-\%m-\%Y-\%T`
+11 14 * * 3 /home/pi/sound/bbb > name`date +\%a-\%d-\%m-\%Y-\%T`
+00 06 * * 6 /home/pi/sound/ccc 02\:00\:00 pi > record6`date +\%a-\%d-\%m-\%Y-\%T`
+00 10 * * 6 /home/pi/sound/ccc 02\:00\:00 pi > record6`date +\%a-\%d-\%m-\%Y-\%T`
+00 06 * * 7 /home/pi/sound/ccc 02\:00\:00 pi > record6`date +\%a-\%d-\%m-\%Y-\%T`
+00 16 * * 7 /home/pi/sound/ccc 02\:00\:00 pi > record6`date +\%a-\%d-\%m-\%Y-\%T`
+06 13 * * 1,2,3,4,5 /home/pi/sound/ccc 54\:00 pi > record6`date +\%a-\%d-\%m-\%Y-\%T`
+#37 17 * * 4 /home/pi/sound/names_in_songs names3.m4a 21\:00 > name`date +\%a-\%d-\%m-\%Y-\%T`
+10 14 * * 3 /home/pi/sound/names_in_songs namestest642.m4a 21\:00 pi > test64`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+40 6 * * 3 /home/pi/sound/names_in_songs namestest64.m4a 21\:00 pi > test64`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+00 04 * * * /home/pi/getprog.sh > pvr`date +\%a-\%d-\%m-\%Y-\%T`
+00 19 * * 6 /home/pi/getprog.sh > pvr`date +\%a-\%d-\%m-\%Y-\%T`
+40 22 * * 6 /home/pi/getprog.sh > pvr`date +\%a-\%d-\%m-\%Y-\%T`
+30 20 * * 7 /home/pi/getprog.sh > pvr`date +\%a-\%d-\%m-\%Y-\%T`
+40 22 * * 7 /home/pi/getprog.sh > pvr`date +\%a-\%d-\%m-\%Y-\%T`
+30 21 * * 5 /home/pi/getprog.sh > pvr`date +\%a-\%d-\%m-\%Y-\%T`
+40 6 * * 7 /home/pi/sound/newmeth.sh 2200 6 > newjez`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+30 6 * * 7 /home/pi/sound/newmeth.sh 1800 6 > newjez`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+30 6 * * 4 /home/pi/sound/newmeth.sh 2200 6 > newjez`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+30 6 * * 5 /home/pi/sound/newmeth.sh 2200 6 > newjez`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+30 6 * * 6 /home/pi/sound/newmeth.sh 2100 5 > newjez`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+0 6 * * 1 /home/pi/sound/newmeth.sh 1700 7 > newjez`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+0 6 * * 2 /home/pi/sound/newmeth.sh 1700 7 > newjez`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+0 6 * * 3 /home/pi/sound/newmeth.sh 1700 7 > newjez`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+30 6 * * 1 /home/pi/sound/newmeth.sh 2200 7 > newjez`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+30 6 * * 2 /home/pi/sound/newmeth.sh 2200 7 > newjez`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+30 6 * * 3 /home/pi/sound/newmeth.sh 2200 7 > newjez`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+#15 6 * * 1 /home/pi/sound/getJez.sh > newjez`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+#30 6 * * 2,3 /home/pi/sound/getJez.sh > newjez`date +\%a-\%d-\%m-\%Y-\%a-\%T`
 #00 14 * * * /home/pi/prices/VIRGIN.sh >> /home/pi/prices/hist
 #05 14 * * * /home/pi/prices/VIRGIN.sh akiko >> /home/pi/prices/histAK
