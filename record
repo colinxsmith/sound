@@ -5,6 +5,7 @@ server_place=new64
 now="$(date +%a-%d_%m_%Y_%T)_$(uname -m -n -s|sed 's/ /-/'g)"
 echo $now
 file=record$now.mp3
+radio6="http://lsn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=320000"
 if [ $(uname -n) != $server_place ]; then
 rm /home/$colin/sound/"$file"
 fi
@@ -14,13 +15,13 @@ fi
 #ffmpeg -i "https://lstn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=96000" -ab 320k -to $length /home/$colin/sound/"$file"
 echo Start $(date)
 if [ $(uname -n) != $server_place ]; then
-ffmpeg -to $length -i "https://lstn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=320000" -ab 320k /home/$colin/sound/"$file"
+ffmpeg -to $length -i "$radio6" -ab 320k /home/$colin/sound/"$file"
 id3v2 -c "$(uname -a)" -y $(date +%Y) -A "$(uname -a)" -t "6 music at $now" -a "Length: $length " /home/$colin/sound/"$file"
 id3v2 -l /home/$colin/sound/"$file"
 cp /home/$colin/sound/"$file" /home/$colin/Music
 fi
 if [ $(uname -n) = $server_place ]; then
-ffmpeg -to $length -i "https://lstn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=320000" -ab 320k /home/pi/sound/"$file"
+ffmpeg -to $length -i "$radio6" -ab 320k /home/pi/sound/"$file"
 id3v2 -c "$(uname -a)" -y $(date +%Y) -A "$(uname -a)" -t "6 music at $now" -a "Length: $length " /home/pi/sound/"$file"
 id3v2 -l /home/pi/sound/"$file"
 cp /home/pi/sound/"$file" /home/pi/Music
