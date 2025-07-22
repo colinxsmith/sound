@@ -1,5 +1,3 @@
-# These provide better compatibility with some devices/software.
-
 #EXTM3U
 #EXTINF:-1,BBC - Radio 1
 http://lsn.lv/bbcradio.m3u8?station=bbc_radio_one&bitrate=96000
@@ -131,9 +129,3 @@ http://lsn.lv/bbcradio.m3u8?station=bbc_wm&bitrate=96000
 http://lsn.lv/bbcradio.m3u8?station=bbc_radio_york&bitrate=96000
 #EXTINF:-1,BBC - Three Counties Radio
 http://lsn.lv/bbcradio.m3u8?station=bbc_three_counties_radio&bitrate=96000
-
-# The above streams are worldwide so sports commentary, etc may not be available. For UK restricted content,
-# add &uk=1 at the end.
-# Different bitrates are available by replacing 96000 :
-# 48000 = 48k, 96000 = 96k
-# UK only: 128000 = 128k, 320000 = 320k
