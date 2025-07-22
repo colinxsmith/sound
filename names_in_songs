@@ -4,9 +4,10 @@
 #start time is around 6:40am and 14:10
 file=$1
 length=${2:-25\:00}
+radio6="http://lsn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=320000"
 rm /home/pi/Music/$file
 echo start $(date)
-ffmpeg -to $length -i "https://lstn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=320000" -c copy /home/pi/Music/$file &> /dev/null
+ffmpeg -to $length -i "$radio6" -c copy /home/pi/Music/$file &> /dev/null
 echo end $(date)
 scp /home/pi/Music/$file pi@new64.local:/home/pi/Music
 mpc -h new64.local --wait update
