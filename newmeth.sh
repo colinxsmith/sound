@@ -2,7 +2,7 @@
 echo $0 \<time e.g. 2200 for start of recording\> \<day of week Monday is 1\>
 day=$(date +%w)
 today=$(date +%s)
-off=$(echo $day-${2:-7}|awk -F "-" '{ print ($1-$2>=0?$1-$2:7+$1-$2)*24*3600; }')
+off=$(echo $day-${2:-7}|awk -F "-" '{ print (($1-$2>=0?$1-$2:7+$1-$2))*24*3600; }')
 echo $off
 before=$(($today-$off))
 echo $before
@@ -13,6 +13,14 @@ echo start at time $start on $(date --date=@$(($before)) +%Y%m%d)
 
 file=https://$base/jazz/Jazz-$(date --date=@$(($before)) +%Y%m%d)-$start.mp3
 echo $file
+
+codeback=$(curl -LIs $file -o /dev/null -w "%{http_code}\n")
+echo $codeback
+if [ $codeback != '200' ]
+then
+	echo Sound file:$file is not available
+	exit 12
+fi
 
 cd ~/sound
 
@@ -25,6 +33,7 @@ curl -L $file > temp.mp3
 if [ $(ls -l temp.mp3 | awk '{ print $5 }') -gt 1000 ]; then id3v2 -c "$(date +%a-%d-%m-%Y:%T) $(uname -a)" temp.mp3; mv temp.mp3 jn.mp3;fi
 
 rm ~/Music/j3hour.mp3
+cp jn.mp3 ~/Music
 cp jn.mp3 ~/Music/j3hour.mp3
 cat df.mp3 >> ~/Music/j3hour.mp3
     elif [ ${2:-0} = '6' ]
@@ -34,6 +43,7 @@ curl -L $file > temp.mp3
 if [ $(ls -l temp.mp3 | awk '{ print $5 }') -gt 1000 ]; then id3v2 -c "$(date +%a-%d-%m-%Y:%T) $(uname -a)" temp.mp3; mv temp.mp3 ny.mp3;fi
 
 rm ~/Music/j3hour.mp3
+cp ny.mp3 ~/Music
 cp ny.mp3 ~/Music/j3hour.mp3
 cat cp.mp3 >> ~/Music/j3hour.mp3
     fi
@@ -49,6 +59,7 @@ curl -L $file > temp.mp3
 if [ $(ls -l temp.mp3 | awk '{ print $5 }') -gt 1000 ]; then id3v2 -c "$(date +%a-%d-%m-%Y:%T) $(uname -a)" temp.mp3; mv temp.mp3 cp.mp3;fi
 
 rm ~/Music/j3hour.mp3
+cp cp.mp3 ~/Music
 cp cp.mp3 ~/Music/j3hour.mp3
     fi
 elif [ $start = '2100' ]
@@ -61,6 +72,7 @@ curl -L $file > temp.mp3
 if [ $(ls -l temp.mp3 | awk '{ print $5 }') -gt 1000 ]; then id3v2 -c "$(date +%a-%d-%m-%Y:%T) $(uname -a)" temp.mp3; mv temp.mp3 af.mp3;fi
 
 rm ~/Music/j3hour.mp3
+cp af.mp3 ~/Music
 cp af.mp3 ~/Music/j3hour.mp3
     fi
 elif [ $start = '1700' ]
@@ -72,6 +84,7 @@ curl -L $file > temp.mp3
 if [ $(ls -l temp.mp3 | awk '{ print $5 }') -gt 1000 ]; then id3v2 -c "$(date +%a-%d-%m-%Y:%T) $(uname -a)" temp.mp3; mv temp.mp3 df.mp3;fi
 
 rm ~/Music/j3hour.mp3
+cp df.mp3 ~/Music
 cp df.mp3 ~/Music/j3hour.mp3
     elif [ ${2:-0} = '6' ]
     then
