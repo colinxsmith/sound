@@ -18,7 +18,7 @@ codeback=$(curl -LIs $file -o /dev/null -w "%{http_code}\n")
 echo $codeback
 if [ $codeback != '200' ]
 then
-	echo Sound file:$file is not available
+	echo -e "Sound file:\e[31m $file is not available\e[0m "
 	exit 12
 fi
 
