@@ -39,11 +39,11 @@ done
 
 echo rm $HOME/*.$fmt
 rm $HOME/*.$fmt
-mpc --wait update 
 
 cd Music
 i=$newname
 ffmpeg -i "$i" -ab 320k "${i%.m4a}.mp3"
+mpc --wait update 
 
 tt=$(ls -l --time-style +%s "${i%.m4a}.mp3"|awk '{print $6}')
 echo $tt
