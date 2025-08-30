@@ -1,0 +1,31 @@
+#!/usr/bin/bash
+#Find out by doing something like:
+#curl -L radiofeeds.co.uk/query.asp?feedme=jazz+fm | sed -n "/jazz-/p" | sed "s/<a href.*http/url=http/" | sed "s/\">//"
+#curl -L radiofeeds.co.uk/query.asp?feedme=jazz+fm | sed -n "/jazzhigh-/p" | sed "s/<a href.*http/url=http/" | sed "s/\">//"
+#curl -L radiofeeds.co.uk/query.asp?feedme=absolute | sed -n "/absoluteradio-/p" | sed "s/<a href.*http/url=http/" | sed "s/\">//">>findjazz
+#
+#These worked
+#
+url1=http://www.radiofeeds.net/playlists/bauer.pls?station=jazz-mp3
+url2=http://www.radiofeeds.net/playlists/bauer.pls?station=jazzhigh-aac
+url3=http://www.radiofeeds.net/playlists/bauerflash.pls?station=absoluteradio-mp3
+url4=http://www.radiofeeds.net/playlists/bauerflash.pls?station=absoluteradio-aac
+if [ -f newbauer.m3u ]
+then
+	rm newbauer.m3u
+fi
+touch newbauer.m3u
+for i in $url1 $url2 $url3 $url4; do
+now=$(date +%s)
+file=$(curl -L "$i" | sed -n "s/File1=//;s/key=.*/key=$now/p")
+echo -e "Need to get file:\e[34m $file \e[0m"
+codeback=$(curl -LIs $file -o /dev/null -w "%{http_code}\n")
+echo $codeback
+if [ $codeback != '200' ]
+then
+	echo -e "\e[31m Sound file:$file is not available \e[0m "
+else
+	mpc add $file
+	echo $file >> newbauer.m3u
+fi
+done
