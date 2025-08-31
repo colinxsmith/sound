@@ -15,16 +15,22 @@ then
 	rm newbauer.m3u
 fi
 touch newbauer.m3u
-for i in $url1 $url2 $url3 $url4; do
 now=$(date +%s)
-file=$(curl -L "$i" | sed -n "s/File1=//;s/key=.*/key=$now/p")
-echo -e "Need to get file:\e[34m $file \e[0m"
+echo $now
+for i in $url1 $url2 $url3 $url4; do
+#file=$(curl -L "$i" | sed -n "s/File1=//;s/key=.*/key=$now/p")
+file=$(curl -L "$i" | sed -n "s/File1=//p")
+file=$(echo $file | sed "s/\n//;s/\r//")
+echo -e "\tNeed to get file:\e[34m $file \e[0m"
+printf "\tNeed to get file:\e[34m %s \e[0m\n" $file
 codeback=$(curl -LIs $file -o /dev/null -w "%{http_code}\n")
 echo $codeback
 if [ $codeback != '200' ]
 then
-	echo -e "\e[31m Sound file:$file is not available \e[0m "
+echo -e "\tNo File:\e[34m $file \e[0m here"
+printf "\tNo File:\e[34m %s \e[0m here\n" $file
 else
+	echo OK
 	mpc add $file
 	echo $file >> newbauer.m3u
 fi
