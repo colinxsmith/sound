@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+playlistfile=${1:-newbauer.m3u}
+now=$(date +%s)
+
+for i in $(sed "s/\&.*//" $playlistfile |  awk -F= '/bauer/ { print $2; }'); do echo $i to $now;sed -i "s/$i/$now/" $playlistfile; done
