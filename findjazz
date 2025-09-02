@@ -35,3 +35,4 @@ else
 	echo $file >> newbauer.m3u
 fi
 done
+for i in $(sed "s/\&.*//" newbauer.m3u |  awk -F= '{ print $2; }'); do echo $i to $now;sed -i "s/$i/$now/" newbauer.m3u; done
