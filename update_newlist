@@ -1,0 +1,39 @@
+#!/usr/bin/bash
+
+#I installed this stuff (probably just bluez stuff is enough) and made .asoundrc file for home directory
+#sudo apt install pipewire-audio pulseaudio-module-bluetooth
+#sudo apt install  pulseaudio-module-bluetooth
+#sudo apt install bluez bluez-alsa bluez-alsa-utils bluez bluez-tools
+
+#defaults.bluealsa {
+#interface "hci0"
+#device "E4:61:F4:9E:B6:50" # this is the address of the bluetooth headphone found using bluetoothctl and scan on
+#profile "a2dp"
+#}
+
+#Need this in mpd.conf
+#audio_output {
+#	type		"alsa"
+#	name		"ALSA"
+#	device		"bluealsa"	# optional
+##mixer_type      "hardware"	# optional
+##	mixer_device	"default"	# optional
+##	mixer_control	"PCM"		# optional
+##	mixer_index	"0"		# optional
+#}
+
+playlistfile=${1:-newlist.m3u}
+now=$(date +%s)
+
+if [ -f $playlistfile ] 
+then
+	rm $playlistfile
+fi
+
+mpc save newlist
+
+for i in $(sed "s/\&.*//" $playlistfile |  awk -F= '/bauer/ { print $2; }'); do echo Old time;date --date=@$i;echo $i to $now; echo After $((($now-$i)/3600)) hours; sed -i "s/$i/$now/" $playlistfile; done
+
+mpc clear
+mpc load newlist
+
