@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+#This must be run in the playlist directory!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 #I installed this stuff (probably just bluez stuff is enough) and made .asoundrc file for home directory
 #sudo apt install pipewire-audio pulseaudio-module-bluetooth
@@ -30,10 +31,10 @@ then
 	rm $playlistfile
 fi
 
-mpc save newlist
+mpc save $(echo $playlistfile|sed "s/.m3u//")
 
 for i in $(sed "s/\&.*//" $playlistfile |  awk -F= '/bauer/ { print $2; }'); do echo Old time;date --date=@$i;echo $i to $now; echo After $((($now-$i)/3600)) hours; sed -i "s/$i/$now/" $playlistfile; done
 
 mpc clear
-mpc load newlist
+mpc load $(echo $playlistfile|sed "s/.m3u//")
 
