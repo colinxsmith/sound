@@ -23,6 +23,36 @@
 ##	mixer_index	"0"		# optional
 #}
 
+#Another .asoundrc file
+#defaults.bluealsa {
+#        interface "hci0"
+#        device "E4:61:F4:9E:B6:50" # this is the address of the bluetooth headphone found using bluetoothctl and scan on
+#        profile "a2dp"
+}
+#pcm.!default {
+#        type plug
+#        slave.pcm "dmixer"
+#}
+#pcm.dmixer  {
+#        type dmix
+#        ipc_key 1024
+#        slave {
+#                pcm "hw:0,0"
+#                period_time 0
+#                period_size 1024
+#                buffer_size 4096
+#                rate 44100
+#        }
+#        bindings {
+#                0 0
+#                1 1
+#        }
+#}
+#ctl.dmixer {
+#        type hw
+#        card 0
+#}
+
 playlistfile=${1:-newlist.m3u}
 now=$(date +%s)
 
