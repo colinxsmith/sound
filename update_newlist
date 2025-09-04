@@ -28,7 +28,7 @@
 #        interface "hci0"
 #        device "E4:61:F4:9E:B6:50" # this is the address of the bluetooth headphone found using bluetoothctl and scan on
 #        profile "a2dp"
-}
+#}
 #pcm.!default {
 #        type plug
 #        slave.pcm "dmixer"
