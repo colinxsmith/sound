@@ -1,0 +1,22 @@
+now=$(date +%s)
+back=5
+url1=http://www.radiofeeds.net/playlists/bauer.pls?station=jazz-mp3
+file=$(curl -L $url1 | sed -n "s/File1=//p")
+file=$(echo $file | sed "s/\n//;s/\r//")
+echo $file
+codeback=$(curl -LIs $file -o /dev/null -w "%{http_code}\n")
+timestamp=$(echo $file |awk -F= '{ print $2; }')
+echo $timestamp
+if [ $codeback == 200 ];then
+echo $codeback
+fi
+date --date @$timestamp
+echo $now $timestamp | awk '{ print ($1-$2)/60.0; }'
+test=$(($timestamp-$back*3600-7200-450*8))
+date --date @$test
+testurl=$(echo $file | sed "s/$timestamp/$test/")
+echo $testurl
+codeback=$(curl -LIs $testurl -o /dev/null -w "%{http_code}\n")
+if [ $codeback == 200 ];then
+echo $codeback
+fi
