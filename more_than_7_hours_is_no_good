@@ -1,3 +1,4 @@
+#!/usr/bin/bash
 now=$(date +%s)
 back=5
 url1=http://www.radiofeeds.net/playlists/bauer.pls?station=jazz-mp3
@@ -11,8 +12,9 @@ if [ $codeback == 200 ];then
 echo $codeback
 fi
 date --date @$timestamp
-echo $now $timestamp | awk '{ print ($1-$2)/60.0; }'
+echo $(echo $now $timestamp | awk '{ print ($1-$2)/60.0; }') "minutes difference now to web timestamp"
 test=$(($timestamp-$back*3600-7200-450*8))
+test=$(($now-$back*3600-7200-450*7))
 date --date @$test
 testurl=$(echo $file | sed "s/$timestamp/$test/")
 echo $testurl
