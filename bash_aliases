@@ -112,3 +112,4 @@ alias jazz2hour=' ffmpeg -t 7200 -i http://edge-bauerall-04-thn.sharp-stream.com
 alias jazz2hourpp=' ffmpeg -t 7200 -i http://edge-bauerall-04-thn.sharp-stream.com/jazz.mp3 -codec: copy j2hr.mp3'
 alias jazz2hourp=' ffmpeg -t 7200 -i http://edge-bauerall-04-thn.sharp-stream.com/jazzhigh.aac -ab 128k j2hr.mp3'
 alias jazzf='id3v2 -l ~/sound/*.mp3 |grep TIT'
+alias resetbauer='(cd ~/Music/playlists/;~/sound/update_newlist)'
