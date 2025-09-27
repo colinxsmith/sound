@@ -19,9 +19,9 @@ echo $codeback
 if [ $codeback != '200' ]
 then
 	echo -e "Sound file:\e[31m $file is not available\e[0m "
-	while [ $codeback == '408' ] || [ $codeback == '521' ]
+	while [ $codeback == '408' ] || [ $codeback == '521' ] || [ $codeback == '504' ]
 	do
-                sleep 120
+                sleep 180
 		codeback=$(curl -LIs $file -o /dev/null -w "%{http_code}\n")
 		echo -e "Again sound file:\e[31m $file is not available\e[0m "
 		echo $codeback
