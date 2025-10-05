@@ -8,8 +8,7 @@ touch $file
 while [ $(ls -l $file | awk '{print $5}') == '0' ]; 
 do 
   attempt=$(($attempt + 1))
-  echo Attempt $attempt 
-  date
+  echo Attempt $attempt $(date)
   echo -e "curl -L https://la.hellorayo.co.uk/jazz/Jazz-$time.mp3 > $file"
   curl -L https://la.hellorayo.co.uk/jazz/Jazz-$time.mp3 > $file;
   if [ $(ls -l $file | awk '{print $5}') == '0' ]; then sleep $sleeptime; fi 
