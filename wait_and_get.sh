@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 time=${2:-20251005-0600}
 file=${1:-prog.mp3}
-sleeptime=300
+sleeptime=${3:-300}
 attempt=0
 if [ -f $file ]; then rm $file; fi
 touch $file
