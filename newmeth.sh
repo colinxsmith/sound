@@ -19,9 +19,9 @@ echo $codeback
 if [ $codeback != '200' ]
 then
 	echo -e "Sound file:\e[31m $file is not available\e[0m "
-	while [ $codeback == '408' ] || [ $codeback == '521' ]
+	while [ $codeback == '408' ] || [ $codeback == '521' ] || [ $codeback == '504' ]
 	do
-                sleep 120
+                sleep 180
 		codeback=$(curl -LIs $file -o /dev/null -w "%{http_code}\n")
 		echo -e "Again sound file:\e[31m $file is not available\e[0m "
 		echo $codeback
@@ -40,6 +40,7 @@ then
     then
 echo 10pm on Sunday
 curl -L $file > temp.mp3
+id3v2 -l temp.mp3
 if [ $(ls -l temp.mp3 | awk '{ print $5 }') -gt 1000 ]; then id3v2 -c "$(date +%a-%d-%m-%Y:%T) $(uname -a)" temp.mp3; mv temp.mp3 jn.mp3;fi
 
 rm ~/Music/j3hour.mp3
@@ -50,6 +51,7 @@ cat df.mp3 >> ~/Music/j3hour.mp3
     then
 echo 10pm on Saturday
 curl -L $file > temp.mp3
+id3v2 -l temp.mp3
 if [ $(ls -l temp.mp3 | awk '{ print $5 }') -gt 1000 ]; then id3v2 -c "$(date +%a-%d-%m-%Y:%T) $(uname -a)" temp.mp3; mv temp.mp3 ny.mp3;fi
 
 rm ~/Music/j3hour.mp3
@@ -66,6 +68,7 @@ echo 6pm on Sunday
     then
 echo 6pm on Saturday
 curl -L $file > temp.mp3
+id3v2 -l temp.mp3
 if [ $(ls -l temp.mp3 | awk '{ print $5 }') -gt 1000 ]; then id3v2 -c "$(date +%a-%d-%m-%Y:%T) $(uname -a)" temp.mp3; mv temp.mp3 cp.mp3;fi
 
 rm ~/Music/j3hour.mp3
@@ -79,6 +82,7 @@ then
 echo 9pm on Friday
 echo $(ls -l af.mp3 | awk '{ print $5 }')
 curl -L $file > temp.mp3
+id3v2 -l temp.mp3
 if [ $(ls -l temp.mp3 | awk '{ print $5 }') -gt 1000 ]; then id3v2 -c "$(date +%a-%d-%m-%Y:%T) $(uname -a)" temp.mp3; mv temp.mp3 af.mp3;fi
 
 rm ~/Music/j3hour.mp3
@@ -91,6 +95,7 @@ then
     then
 echo 5pm on Sunday
 curl -L $file > temp.mp3
+id3v2 -l temp.mp3
 if [ $(ls -l temp.mp3 | awk '{ print $5 }') -gt 1000 ]; then id3v2 -c "$(date +%a-%d-%m-%Y:%T) $(uname -a)" temp.mp3; mv temp.mp3 df.mp3;fi
 
 rm ~/Music/j3hour.mp3
@@ -102,6 +107,7 @@ echo 5pm on Saturday
     fi
 else
 curl -L $file > temp.mp3
+id3v2 -l temp.mp3
 if [ $(ls -l temp.mp3 | awk '{ print $5 }') -gt 1000 ]; then id3v2 -c "$(date +%a-%d-%m-%Y:%T) $(uname -a)" temp.mp3; mv temp.mp3 jazz.mp3;fi
 
 fi
