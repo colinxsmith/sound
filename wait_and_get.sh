@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 time=${2:-20251005-0600}
 file=${1:-prog.mp3}
 sleeptime=${3:-300}
