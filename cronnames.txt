@@ -1,0 +1,3 @@
+39 06 * * 3 /home/colin/sound/names_in_songs namestest.m4a 19\:00 > ntest`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+07 14 * * 3 /home/colin/sound/names_in_songs namestest2.m4a 42\:00 > ntest`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+05 13 * * 1,2,3,4,5 /home/colin/sound/names_in_songs timemachine.m4a 29\:00 > ntest`date +\%a-\%d-\%m-\%Y-\%a-\%T`
