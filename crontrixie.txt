@@ -1,0 +1,29 @@
+39 06 * * 3 /home/pi/sound/names_in_songs namestesttrixie.m4a 19\:00 > ntest`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+07 14 * * 3 /home/pi/sound/names_in_songs namestest2trixie.m4a 42\:00 > ntest`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+05 13 * * 1,2,3,4,5 /home/pi/sound/names_in_songs timemachinetrixie.m4a 29\:00 > ntest`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+00 08 * * 4 /home/pi/sound/getbrown > brown`date +\%a-\%d-\%m-\%Y-\%T`
+00 04 * * * /home/pi/getprog.sh > pvr`date +\%a-\%d-\%m-\%Y-\%T`
+00 19 * * 6 /home/pi/getprog.sh > pvr`date +\%a-\%d-\%m-\%Y-\%T`
+40 22 * * 6 /home/pi/getprog.sh > pvr`date +\%a-\%d-\%m-\%Y-\%T`
+30 20 * * 7 /home/pi/getprog.sh > pvr`date +\%a-\%d-\%m-\%Y-\%T`
+40 22 * * 7 /home/pi/getprog.sh > pvr`date +\%a-\%d-\%m-\%Y-\%T`
+30 21 * * 5 /home/pi/getprog.sh > pvr`date +\%a-\%d-\%m-\%Y-\%T`
+40 6 * * 7 /home/pi/sound/newmeth.sh 2200 6 > newjez`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+30 6 * * 7 /home/pi/sound/newmeth.sh 1800 6 > newjez`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+30 6 * * 4 /home/pi/sound/newmeth.sh 2200 6 > newjez`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+30 6 * * 5 /home/pi/sound/newmeth.sh 2200 6 > newjez`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+30 6 * * 6 /home/pi/sound/newmeth.sh 2100 5 > newjez`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+0 6 * * 1 /home/pi/sound/newmeth.sh 1700 7 > newjez`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+0 6 * * 2 /home/pi/sound/newmeth.sh 1700 7 > newjez`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+0 6 * * 3 /home/pi/sound/newmeth.sh 1700 7 > newjez`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+30 6 * * 1 /home/pi/sound/newmeth.sh 2200 7 > newjez`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+30 6 * * 2 /home/pi/sound/newmeth.sh 2200 7 > newjez`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+30 6 * * 3 /home/pi/sound/newmeth.sh 2200 7 > newjez`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+31 22 * * 3,5,6,7 /home/pi/sound/wait_and_get.sh /home/pi/Music/mp3/`date +\%a\%d`-9pm.mp3 `date +\%Y\%m\%d-2100` 60 > wait`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+06 13 * * 1,2,3,4,5 /home/pi/sound/record 25\:00 > rec`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+35 6 * * 3 /home/pi/sound/record 20\:00 > rec`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+06 14 * * 3 /home/pi/sound/record 33\:00 > rec`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+00 6 * * 6,7 /home/pi/sound/record 02\:00\:01 > rec`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+00 10 * * 6 /home/pi/sound/record 03\:00\:01 > rec`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+00 18 * * 6 /home/pi/sound/record 03\:00\:01 > rec`date +\%a-\%d-\%m-\%Y-\%a-\%T`
+00 16 * * 7 /home/pi/sound/record 02\:00\:01 > rec`date +\%a-\%d-\%m-\%Y-\%a-\%T`
