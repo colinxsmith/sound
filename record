@@ -1,24 +1,24 @@
 #!/bin/bash
 length=${1:-03\:00\:00}
-colin=${2:-colin}
-server_place=new64
+pi=${2:-pi}
+server_place=trixie64
 now="$(date +%a-%d_%m_%Y_%T)_$(uname -m -n -s|sed 's/ /-/'g)"
 echo $now
-file=record$now.mp3
+file=recordtr$now.mp3
 radio6="http://lsn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=320000"
 if [ $(uname -n) != $server_place ]; then
-rm /home/$colin/sound/"$file"
+rm /home/$pi/sound/"$file"
 fi
 if [ $(uname -n) = $server_place ]; then
 rm /home/pi/sound/"$file"
 fi
-#ffmpeg -i "https://lstn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=96000" -ab 320k -to $length /home/$colin/sound/"$file"
+#ffmpeg -i "https://lstn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=96000" -ab 320k -to $length /home/$pi/sound/"$file"
 echo Start $(date)
 if [ $(uname -n) != $server_place ]; then
-ffmpeg -to $length -i "$radio6" -ab 320k /home/$colin/sound/"$file"
-id3v2 -c "$(uname -a)" -y $(date +%Y) -A "$(uname -a)" -t "6 music at $now" -a "Length: $length " /home/$colin/sound/"$file"
-id3v2 -l /home/$colin/sound/"$file"
-cp /home/$colin/sound/"$file" /home/$colin/Music
+ffmpeg -to $length -i "$radio6" -ab 320k /home/$pi/sound/"$file"
+id3v2 -c "$(uname -a)" -y $(date +%Y) -A "$(uname -a)" -t "6 music at $now" -a "Length: $length " /home/$pi/sound/"$file"
+id3v2 -l /home/$pi/sound/"$file"
+cp /home/$pi/sound/"$file" /home/$pi/Music
 fi
 if [ $(uname -n) = $server_place ]; then
 ffmpeg -to $length -i "$radio6" -ab 320k /home/pi/sound/"$file"
@@ -28,7 +28,7 @@ cp /home/pi/sound/"$file" /home/pi/Music
 fi
 echo End $(date)
 if [ $(uname -n) != $server_place ]; then
-	scp /home/$colin/sound/"$file" pi@$server_place.local:/home/pi/Music
+	scp /home/$pi/sound/"$file" pi@$server_place.local:/home/pi/Music
 	export MPD_HOST=$server_place.local
 fi
 mpc --wait update

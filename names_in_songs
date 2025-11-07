@@ -4,8 +4,8 @@
 #start time is around 6:40am and 14:10
 file=${1:-names.m4a}
 length=${2:-27\:00}
-colin=${3:-colin}
-new64=${4:-new64}
+colin=${3:-pi}
+trixie64=${4:-trixie64}
 radio6="http://lsn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=320000"
 if [ -f /home/$colin/Music/$file ]; then
 rm /home/$colin/Music/$file
@@ -23,9 +23,9 @@ if [ -f /home/$colin/Music/$file ]; then
 else
   echo nofile /home/$colin/Music/$file
 fi
-if [ $(uname -n) != $new64 ]; then
-  scp /home/$colin/Music/$file pi@$new64.local:/home/pi/Music
-  export MPD_HOST=$new64.local
+if [ $(uname -n) != $trixie64 ]; then
+  scp /home/$colin/Music/$file pi@$trixie64.local:/home/pi/Music
+  export MPD_HOST=$trixie64.local
 fi
 echo Finish $(date)
 mpc --wait update

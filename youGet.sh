@@ -1,7 +1,7 @@
 #!/bin/sh
 PATH=$PATH:/usr/local/bin
 fmt=m4a
-new64=new64
+trixie64=trixie64
 getter=$(echo $1|sed "s/ /_/g")
 use=$2
 tester=$(echo $getter | sed -n "/-/p")
@@ -54,11 +54,12 @@ if [ $use ]; then echo use "${i%.m4a}.mp3" with "$music";id3v2 -t "$(echo $music
 id3v2 -c "$(date +%a\ %d-%m-%Y) $(uname -a)" "${i%.m4a}.mp3"
 id3v2 -l "${i%.m4a}.mp3"
 #edit here to correct action on ubuntu
-if [ $(uname -n) != $new64 ]; then
-  scp  "${i%.m4a}.mp3" pi@$new64.local:~/Music/mp3
-  export MPD_HOST=$new64.local
+if [ $(uname -n) != $trixie64 ]; then
+  scp  "${i%.m4a}.mp3" pi@$trixie64.local:~/Music/mp3
+  export MPD_HOST=$trixie64.local
 fi
 cp "${i%.m4a}.mp3" mp3
 mpc --wait update
 mpc add mp3/"${i%.m4a}.mp3"
+rm "${i%.m4a}.m4a"
 
