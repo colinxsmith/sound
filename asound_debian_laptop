@@ -1,0 +1,6 @@
+defaults.bluealsa {
+interface "hci0"
+device "E4:61:F4:9E:B6:50"
+profile "a2dp"
+}
+
