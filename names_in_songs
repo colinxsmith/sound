@@ -28,4 +28,4 @@ if [ $(uname -n) != $trixie64 ]; then
   export MPD_HOST=$trixie64.local
 fi
 echo Finish $(date)
-mpc --wait update
+#mpc --wait update
