@@ -44,8 +44,6 @@ alias recordvideo='ffmpeg -f video4linux2 -framerate 30 -video_size hd720 -i /de
 alias recordvideo1='ffmpeg -f video4linux2 -framerate 30 -video_size hd720 -i /dev/video1 out.mpeg'
 alias editmake='for i in make*; do if grep +1z $i; then sed -i s/+1z/+11/ $i; fi; done'
 alias editmaker='for i in make*; do if grep +11 $i; then sed -i s/+11/+1z/ $i; fi; done'
-ifconfig > /home/pi/address.txt
-alias address='sed -n "/inet a/p" address.txt'
 alias less='less -R'
 alias ll='ls -alF --time-style=+%d-%m-%Y\ %T'
 alias la='ls -A'
@@ -113,8 +111,7 @@ alias jazz2hourpp=' ffmpeg -t 7200 -i http://edge-bauerall-04-thn.sharp-stream.c
 alias jazz2hourp=' ffmpeg -t 7200 -i http://edge-bauerall-04-thn.sharp-stream.com/jazzhigh.aac -ab 128k j2hr.mp3'
 alias jazzf='id3v2 -l ~/sound/*.mp3 |grep TIT'
 alias resetbauer='(cd ~/Music/playlists/;~/sound/update_newlist)'
-alias absoluteRadio='mplayer -ao pulse http://edge-bauerabsolute-05-gos2.sharp-stream.com/absoluteradio.aac?aw_0_1st.skey=$(date +%s)'
-alias jazzfm='mplayer -ao pulse http://edge-baueral-01-gos2.sharp-stream.com/jazzhigh.aac?aw_0_1st.skey=$(date +%s)'
+alias jazzfm='mplayer -ao pulse http://edge-baueral-03-gos2.sharp-stream.com/jazzhigh.aac?aw_0_1st.skey=$(date +%s)'
 alias jazz2hour=' ffmpeg -t 7200 -i http://edge-bauerall-04-thn.sharp-stream.com/jazzhigh.aac -codec: copy j2hr.m4a'
 alias jazz2hourp=' ffmpeg -t 7200 -i http://edge-bauerall-04-thn.sharp-stream.com/jazzhigh.aac -ab 128k j2hr.mp3'
 alias jazz2hourpp=' ffmpeg -t 7200 -i http://edge-bauerall-04-thn.sharp-stream.com/jazz.mp3 -codec: copy j2hr.mp3'
