@@ -1,0 +1,48 @@
+{
+  "Type": "UnencryptedConfiguration",
+  "Certificates": [
+    {
+      "GUID": "{a2407521-304f-463f-a5e5-fdd57a2eb94d}",
+      "Type": "Authority",
+      "X509": "MIIBvzCCAWWgAwIBAgIUJjyF0TexSyy2dokibPpDnl+WQ6YwCgYIKoZIzj0EAwIwFjEUMBIGA1UEAwwLRWFzeS1SU0EgQ0EwHhcNMjUxMTE2MjAzODI0WhcNMzUxMTE0MjAzODI0WjAWMRQwEgYDVQQDDAtFYXN5LVJTQSBDQTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABNsT7qKhTmVtgn8IaEz1rDogVEzsi8SyvcIiVcavBxGXsgQXApUD4I6munssCnqrj0eYjxIwrZ5TeAO7yBC79hGjgZAwgY0wDAYDVR0TBAUwAwEB/zAdBgNVHQ4EFgQUr+BeU95b8YrOuU1Er4zv+9KrNTMwUQYDVR0jBEowSIAUr+BeU95b8YrOuU1Er4zv+9KrNTOhGqQYMBYxFDASBgNVBAMMC0Vhc3ktUlNBIENBghQmPIXRN7FLLLZ2iSJs+kOeX5ZDpjALBgNVHQ8EBAMCAQYwCgYIKoZIzj0EAwIDSAAwRQIhANCICNG2JJArJhfaSTBhfFXa4xiumfLClH2U8HgJZEjPAiAWC7x4ljGKkeuI4rMwdxTdaJqUHf88jPX3+Sho3ZmjDQ=="
+    },
+    {
+      "GUID": "{6e38a82f-a286-43b6-a2e1-bcea88abbc34}",
+      "Type": "Authority",
+      "X509": "MIIByjCCAW+gAwIBAgIRALvTeJqX8WzpEiL8ZE48NXswCgYIKoZIzj0EAwIwFjEUMBIGA1UEAwwLRWFzeS1SU0EgQ0EwHhcNMjUxMTE2MjA0NDA4WhcNMjgxMDMxMjA0NDA4WjARMQ8wDQYDVQQDDAZkZWJpYW4wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAT7kf9emiaWGliRxCydPLNRoKjPFXwTMvetiRBXHFpyH1xH93r52XCF6N9h8hHrcxZ+tP8/1Xkruj4tG44aXsndo4GiMIGfMAkGA1UdEwQCMAAwHQYDVR0OBBYEFPN7IRTFRcYx4eJw9NTA3JRkJl8jMFEGA1UdIwRKMEiAFK/gXlPeW/GKzrlNRK+M7/vSqzUzoRqkGDAWMRQwEgYDVQQDDAtFYXN5LVJTQSBDQYIUJjyF0TexSyy2dokibPpDnl+WQ6YwEwYDVR0lBAwwCgYIKwYBBQUHAwIwCwYDVR0PBAQDAgeAMAoGCCqGSM49BAMCA0kAMEYCIQDQLW+xEmvVPrTXk7isBG1sM01ELN1zd07iWURtLtb0ggIhAJLb1QDSGpDFAVGV30RKANHqShtT8A/dtkoZ0xUCm9u3"
+    }
+  ],
+  "NetworkConfigurations": [
+    {
+      "GUID": "{269cc811-03c3-40af-9afd-aa2c3d10de25}",
+      "Name": "debbers",
+      "Type": "VPN",
+      "VPN": {
+        "Type": "OpenVPN",
+        "Host": "82.16.69.76",
+        "OpenVPN": {
+          "Port": 1194,
+          "UserAuthenticationType": "Password",
+          "CompLZO": "false",
+          "VerifyX509": {
+            "Name": "debian_8100a4f4-5352-4f17-b83a-49dd44f4f3b8",
+            "Type": "name"
+          },
+          "Proto": "udp",
+          "RemoteCertTLS": "none",
+          "Cipher": "AES-256-CBC",
+          "Auth": "SHA256",
+          "ServerCARefs": [
+            "{a2407521-304f-463f-a5e5-fdd57a2eb94d}"
+          ],
+          "ClientCertType": "Pattern",
+          "ClientCertPattern": {
+            "IssuerCARef": [
+              "{6e38a82f-a286-43b6-a2e1-bcea88abbc34}"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
