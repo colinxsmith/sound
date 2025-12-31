@@ -5,7 +5,7 @@ sleeptime=${3:-300}
 attempt=0
 if [ -f $file ]; then rm $file; fi
 touch $file
-while [ $(ls -l $file | awk '{print $5}') == '0' ]; 
+while [ $(ls -l $file | awk '{print $5}') == '0' ] && [ $attempt '<' '200' ]; 
 do 
   attempt=$(($attempt + 1))
   echo Attempt $attempt $(date)
