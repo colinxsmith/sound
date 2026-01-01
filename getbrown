@@ -2,10 +2,14 @@
 tim=$(date +%d_%m_%Y:%H:%M:%S)
 file=/home/pi/sound/Brownswood_Basement
 length=$(echo 1234|awk '{ print 60*60*6 }') #6 hour programme
+length=$(echo 1234|awk '{ print 60 }') #6 hour programme
 echo $length
-echo Start $(date)
+e1=$(date +%s)
+echo Start $(date --date=@$e1)
 ffmpeg -i "http://worldwidefm.out.airtime.pro:8000/worldwidefm_a" -t $length -c copy $file$tim.mp3
-echo End $(date)
+e2=$(date +%s)
+echo End $(date --date=@$e2)
+length=$(($e2 - $e1))
 id3v2 -y $(date +%Y) $file$tim.mp3
 id3v2 -a "$(date +%a-%d-%B-%Y) Recording" $file$tim.mp3
 id3v2 -t "World Wide FM ($length secs)" $file$tim.mp3
