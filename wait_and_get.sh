@@ -18,3 +18,7 @@ ls -l $file
 id3v2 -c "$(date +%d-%m-%Y) $(uname -m -o -s)" $file
 id3v2 --TCON "$(date +%d-%m-%Y) $(uname -m -o -s)" $file
 id3v2 -l $file
+if [ $(hostname) == lenovo ]; then
+scp $file pi@trixie32.local:~/Music/mp3
+scp $file pi@trixie64.local:~/Music
+fi
