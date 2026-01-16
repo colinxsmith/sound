@@ -117,4 +117,4 @@ alias jazz2hourp=' ffmpeg -t 7200 -i http://edge-bauerall-04-thn.sharp-stream.co
 alias jazz2hourpp=' ffmpeg -t 7200 -i http://edge-bauerall-04-thn.sharp-stream.com/jazz.mp3 -codec: copy j2hr.mp3'
 alias radio1xtra='mplayer -ao pulse "http://lsn.lv/bbcradio.m3u8?station=bbc_1xtra&bitrate=320000"'
 alias radio6='mplayer -ao pulse "http://lsn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=320000"'
-alias worldwidefm='mplayer -ao pulse "http://worldwidefm.out.airtime.pro:8000/worldwidefm_b"'
+alias worldwidefm='mplayer -ao pulse "https://worldwide-fm.radiocult.fm/stream"'
