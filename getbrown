@@ -5,7 +5,8 @@ length=$(echo 1234|awk '{ print 60*60*6 }') #6 hour programme
 echo $length
 e1=$(date +%s)
 echo Start $(date --date=@$e1)
-ffmpeg -i "http://worldwidefm.out.airtime.pro:8000/worldwidefm_a" -t $length -c copy $file$tim.mp3
+#ffmpeg -i "http://worldwidefm.out.airtime.pro:8000/worldwidefm_a" -t $length -c copy $file$tim.mp3
+ffmpeg -i "https://worldwide-fm.radiocult.fm/stream" -t $length -c copy $file$tim.mp3
 e2=$(date +%s)
 echo End $(date --date=@$e2)
 length=$(($e2 - $e1))
