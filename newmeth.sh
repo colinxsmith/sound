@@ -48,6 +48,7 @@ cp jn.mp3 ~/Music
 cp jn.mp3 ~/Music/mp3
 cp jn.mp3 ~/Music/j3hour.mp3
 cat df.mp3 >> ~/Music/j3hour.mp3
+cat ny.mp3 >> ~/Music/j3hour.mp3
     elif [ ${2:-0} = '6' ]
     then
 echo 10pm on Saturday
