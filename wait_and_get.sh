@@ -21,4 +21,7 @@ id3v2 -l $file
 if [ $(hostname) == lenovo ]; then
 scp $file pi@trixie32.local:~/Music/mp3
 scp $file pi@trixie64.local:~/Music/mp3
+else
+  add=$(echo $file | sed "s|^.*Music/||")
+  mpc add $add
 fi

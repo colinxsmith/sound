@@ -61,6 +61,7 @@ cp ny.mp3 ~/Music
 cp ny.mp3 ~/Music/mp3
 cp ny.mp3 ~/Music/j3hour.mp3
 cat cp.mp3 >> ~/Music/j3hour.mp3
+cat jn.mp3 >> ~/Music/j3hour.mp3
     fi
 elif [ $start = '1800' ]
 then
