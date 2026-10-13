@@ -1,6 +1,6 @@
 #!/bin/bash
 length=${1:-02\:00\:00}
-pi=${2:-colinxsmith}
+pi=${2:-pi}
 server_place=192.168.0.37
 now="$(date +%a-%d_%m_%Y_%T)_$(uname -m -n -s|sed 's/ /-/'g)"
 echo $now
