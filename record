@@ -33,8 +33,8 @@ cp /home/$pi/sound/"$file" /home/$pi/Music
 fi
 echo End $(date)
 if [ $(uname -n) != $server_place ]; then
-	scp /home/$pi/sound/"$file" pi@$server_place.local:/home/pi/Music
-	export MPD_HOST=$server_place.local
+	scp /home/$pi/sound/"$file" pi@$server_place:/home/pi/Music
+	export MPD_HOST=$server_place
 fi
 mpc --wait update
 mpc add "$file"
