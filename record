@@ -21,14 +21,14 @@ echo Start $(date)
 if ! [[ "$(hostname -I)" =~ "$server_place" ]]; then
 	echo $station
 	echo not server place
-        ffmpeg -to $length -i "$station" -ab 320k -id3v2_version 3 -write_id3v1 1 -metadata title="$(echo $file | sed 's/\..*//') $station"  -metadata album="$(uname -a)" -metadata artist="Length: $length" -metadata date="$(date +%Y)" /home/$pi/sound/"$file"
+        ffmpeg -to $length -i "$station" -ab 320k -id3v2_version 3 -write_id3v1 1 -metadata title="$(echo $file | sed 's/\..*//') $station at $now"  -metadata album="$(uname -a)" -metadata artist="Length: $length" -metadata date="$(date +%Y)" /home/$pi/sound/"$file"
 id3v2 -l /home/$pi/sound/"$file"
 #cp /home/$pi/sound/"$file" /home/$pi/Music
 fi
 if [[ "$(hostname -I)" =~ "$server_place" ]]; then
 	echo $radio6
 	echo server place
-        ffmpeg -to $length -i "$station" -ab 320k -id3v2_version 3 -write_id3v1 1 -metadata title="$(echo $file | sed 's/\..*//') $station"  -metadata album="$(uname -a)" -metadata artist="Length: $length" -metadata date="$(date +%Y)" /home/$pi/sound/"$file"
+        ffmpeg -to $length -i "$station" -ab 320k -id3v2_version 3 -write_id3v1 1 -metadata title="$(echo $file | sed 's/\..*//') $station at $now"  -metadata album="$(uname -a)" -metadata artist="Length: $length" -metadata date="$(date +%Y)" /home/$pi/sound/"$file"
 id3v2 -l /home/$pi/sound/"$file"
 cp /home/$pi/sound/"$file" /home/$pi/Music
 fi
