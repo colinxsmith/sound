@@ -11,28 +11,29 @@ radio1X="http://lsn.lv/bbcradio.m3u8?station=bbc_1xtra&bitrate=320000"
 station=${4:-radio6}
 station=${station#$}
 station=${!station#$}
-if [ $(uname -n) != $server_place ]; then
+if ! [[ "$(hostname -I)" =~ "$server_place" ]]; then
 rm /home/$pi/sound/"$file"
 fi
-if [ $(uname -n) = $server_place ]; then
+if [[ "$(hostname -I)" =~ "$server_place" ]]; then
 rm /home/$pi/sound/"$file"
 fi
-#ffmpeg -i "https://lstn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=9120000" -ab 320k -to $length /home/$pi/sound/"$file"
 echo Start $(date)
-if [ $(uname -n) != $server_place ]; then
+if ! [[ "$(hostname -I)" =~ "$server_place" ]]; then
 	echo $station
+	echo not server place
 ffmpeg -to $length -i "$station" -ab 320k -id3v2_version 3 -write_id3v1 1 -metadata title="$station" -metadata title="$station at $now" -metadata album="$(uname -a)" -metadata artist="Length: $length" -metadata date="$(date +%Y)" /home/$pi/sound/"$file"
 id3v2 -l /home/$pi/sound/"$file"
 #cp /home/$pi/sound/"$file" /home/$pi/Music
 fi
-if [ $(uname -n) = $server_place ]; then
+if [[ "$(hostname -I)" =~ "$server_place" ]]; then
 	echo $radio6
+	echo server place
 ffmpeg -to $length -i "$station" -ab 320k -id3v2_version 3 -write_id3v1 1 -metadata title="$station" -metadata title="$station at $now" -metadata album="$(uname -a)" -metadata artist="Length: $length" -metadata date="$(date +%Y)" /home/$pi/sound/"$file"
 id3v2 -l /home/$pi/sound/"$file"
 cp /home/$pi/sound/"$file" /home/$pi/Music
 fi
 echo End $(date)
-if [ $(uname -n) != $server_place ]; then
+if ! [[ "$(hostname -I)" =~ "$server_place" ]]; then
 	scp /home/$pi/sound/"$file" pi@$server_place:/home/pi/Music
 	export MPD_HOST=$server_place
 fi
