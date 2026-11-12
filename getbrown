@@ -1,10 +1,10 @@
 #!/bin/bash
 tim=$(date +%d_%m_%Y:%H:%M:%S)
-file=/home/$pi/sound/Brownswood_Basement
 length=$(echo 1234|awk '{ print 60*60*4 }') #4 hour programme
 length=${1:-21600}
 wfm1=${2:-wfm1}
 pi=${3:-pi}
+file=/home/$pi/sound/Brownswood_Basement
 echo $length
 e1=$(date +%s)
 echo Start $(date --date=@$e1)
