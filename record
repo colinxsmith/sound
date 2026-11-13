@@ -30,7 +30,8 @@ if [[ "$(hostname -I)" =~ "$server_place" ]]; then
 	echo server place
         ffmpeg -to $length -i "$station" -ab 320k -id3v2_version 3 -write_id3v1 1 -metadata title="$(echo $file | sed 's/\..*//') $station at $now"  -metadata album="$(uname -a)" -metadata artist="Length: $length" -metadata date="$(date +%Y)" /home/$pi/sound/"$file"
 id3v2 -l /home/$pi/sound/"$file"
-cp /home/$pi/sound/"$file" /home/$pi/Music
+#cp /home/$pi/sound/"$file" /home/$pi/Music
+ffmpeg -i /home/$pi/sound/"$file" -i /home/$pi/Pictures/poppy.jpeg -map 0 -map 1 -c copy -id3v2_version 3 -write_id3v1 1 /home/$pi/Music/"$file"
 fi
 echo End $(date)
 if ! [[ "$(hostname -I)" =~ "$server_place" ]]; then
