@@ -9,7 +9,8 @@ echo $length
 e1=$(date +%s)
 echo Start $(date --date=@$e1)
 #ffmpeg -i "http://worldwidefm.out.airtime.pro:8000/worldwidefm_a" -t $length -c copy $file$tim.mp3
-ffmpeg -i "https://worldwide-fm.radiocult.fm/stream" -t $length -c copy $file$tim.mp3
+ffmpeg -i "https://worldwide-fm.radiocult.fm/stream" -i /home/$pi/Pictures/poppy.jpeg -map 0 -map 1 -t $length -c copy -id3v2_version 3 $file$tim.mp3
+#ffmpeg -i sound/Brownswood_Basement12_11_2026:08:00:01.mp3 -i Pictures/poppy.jpeg -map 0 -map 1 -c copy -id3v2_version 3 Music/wfm1.mp3
 e2=$(date +%s)
 echo End $(date --date=@$e2)
 length=$(($e2 - $e1))
