@@ -1,0 +1,114 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Defaults
+length="${1:-02:00:00}"
+username="${USER:-pi}"
+server_ip="192.168.0.37"
+
+# Build timestamp and default .m4a filename
+now="$(date +%a-%d_%m_%Y_%T)_$(uname -m -n -s | tr ' ' '-')"
+default_file="recordtr${now}.m4a"
+file="${2:-$default_file}"
+
+# Determine output format from extension (default to .m4a if none or unsupported)
+ext="${file##*.}"
+ext_lower="${ext,,}"
+
+if [[ "$file" != *.* ]] || [[ "$ext_lower" != "mp3" && "$ext_lower" != "m4a" ]]; then
+    file="${file%.*}.m4a"
+    ext_lower="m4a"
+fi
+
+# Station presets (supports preset name, direct URL, or .m3u8 playlist file)
+declare -A stations=(
+    [radio6]="http://lsn.lv"
+    [radio1X]="http://lsn.lv"
+)
+
+station_input="${3:-radio6}"
+station_input="${station_input#\$}"
+
+if [[ -n "${stations[$station_input]+_}" ]]; then
+    station_url="${stations[$station_input]}"
+else
+    station_url="$station_input"
+fi
+
+# Cover art input (4th argument: accepts direct path or filename in ~/Pictures)
+cover_input="${4:-poppy.jpeg}"
+if [[ -f "$cover_input" ]]; then
+    cover_art="$cover_input"
+else
+    cover_art="/home/${username}/Pictures/${cover_input}"
+fi
+
+# Paths
+sound_dir="/home/${username}/sound"
+music_dir="/home/${username}/Music"
+sound_file="${sound_dir}/${file}"
+music_file="${music_dir}/${file}"
+
+mkdir -p "$sound_dir" "$music_dir"
+
+# Detect if running on the MPD server
+is_server=false
+if [[ " $(hostname -I) " == *" ${server_ip} "* ]]; then
+    is_server=true
+fi
+
+echo "Timestamp: $now"
+echo "Output:    $file (${ext_lower^^})"
+echo "Stream:    $station_url"
+echo "Cover Art: $([[ -f "$cover_art" ]] && echo "$cover_art" || echo "None (file not found)")"
+echo "Mode:      $([[ "$is_server" == true ]] && echo "server place" || echo "not server place")"
+echo "Start:     $(date)"
+
+# Build FFmpeg inputs
+ffmpeg_inputs=(-to "$length" -i "$station_url")
+ffmpeg_maps=(-map 0:a)
+if [[ -f "$cover_art" ]]; then
+    ffmpeg_inputs+=(-i "$cover_art")
+    ffmpeg_maps+=(-map 1 -disposition:v:0 attached_pic)
+fi
+
+# Select container-specific codec and tagging flags
+case "$ext_lower" in
+    mp3)
+        format_args=(-c:a libmp3lame -b:a 320k -c:v copy -id3v2_version 3 -write_id3v1 1)
+        ;;
+    m4a)
+        format_args=(-c copy -bsf:a aac_adtstoasc -movflags +faststart)
+        ;;
+esac
+
+# Record, tag metadata, and embed cover art in one pass
+ffmpeg -hide_banner -loglevel error -y \
+    "${ffmpeg_inputs[@]}" \
+    "${ffmpeg_maps[@]}" \
+    "${format_args[@]}" \
+    -metadata title="${file%.*} ${station_url} at ${now}" \
+    -metadata album="$(uname -a)" \
+    -metadata artist="Length: ${length}" \
+    -metadata date="$(date +%Y)" \
+    "$sound_file"
+
+# Copy finished file to local Music folder
+cp -p "$sound_file" "$music_file"
+
+# Inspect ID3 tags if output is MP3 and id3v2 is installed
+if [[ "$ext_lower" == "mp3" ]] && command -v id3v2 >/dev/null 2>&1; then
+    id3v2 -l "$music_file"
+fi
+
+echo "End: $(date)"
+
+# Transfer to server if running remotely, then update MPD
+if [[ "$is_server" == false ]]; then
+    scp "$sound_file" "pi@${server_ip}:/home/pi/Music/"
+    export MPD_HOST="$server_ip"
+fi
+
+mpc --wait update
+mpc add "$file"
+
