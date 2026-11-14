@@ -32,6 +32,7 @@ if [[ "$(hostname -I)" =~ "$server_place" ]]; then
 id3v2 -l /home/$pi/sound/"$file"
 #cp /home/$pi/sound/"$file" /home/$pi/Music
 ffmpeg -i /home/$pi/sound/"$file" -i /home/$pi/Pictures/poppy.jpeg -map 0 -map 1 -c copy -id3v2_version 3 -write_id3v1 1 /home/$pi/Music/"$file"
+cp /home/$pi/Music/"$file" /home/$pi/sound/"$file"
 fi
 echo End $(date)
 if ! [[ "$(hostname -I)" =~ "$server_place" ]]; then
