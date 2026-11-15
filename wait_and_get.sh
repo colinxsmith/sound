@@ -7,6 +7,7 @@ time=${2:-20251005-0600}
 sleeptime=${3:-300}
 cover=${4:-$HOME/Pictures/tower.jpeg}
 
+current_user=${USER:-$(whoami)}
 url="https://la.hellorayo.co.uk/jazz/Jazz-${time}.mp3"
 attempt=0
 
@@ -58,10 +59,10 @@ id3v2 -c "$tag_info" "$file"
 id3v2 --TCON "$tag_info" "$file"
 id3v2 -l "$file"
 
-# Distribute to Raspberry Pis from Lenovo, or queue locally in MPD
+# Distribute to remote hosts from Lenovo, or queue locally in MPD
 if [ "$(hostname)" = "lenovo" ]; then
-    scp -o BatchMode=yes "$file" pi@trixie32.local:~/Music/mp3/
-    scp -o BatchMode=yes "$file" pi@trixie64.local:~/Music/mp3/
+    scp -o BatchMode=yes "$file" "pi@trixie32.local:~/Music/mp3/"
+    scp -o BatchMode=yes "$file" "pi@trixie64.local:~/Music/mp3/"
 else
     mpc --wait update
     add="${file#*Music/}"
