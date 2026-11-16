@@ -6,6 +6,34 @@ file=${1:-prog.mp3}
 time=${2:-20251005-0600}
 sleeptime=${3:-300}
 cover=${4:-$HOME/Pictures/tower.jpeg}
+embed_cover() {
+    local audio_file="$1"
+    local cover_img="${2:-tower.jpeg}"
+
+    if [ ! -f "$audio_file" ]; then
+        echo "Error: Audio file not found at $audio_file"
+        return 1
+    fi
+
+    if [ -f "$cover_img" ]; then
+        local tmp_cover="${audio_file%.mp3}.cover.mp3"
+        echo "$tmp_cover" "$cover_img"
+
+        if ffmpeg -nostdin -loglevel error -y -i "$audio_file" -i "$cover_img" \
+            -map 0:a -map 1:v -c copy -id3v2_version 3 \
+            -disposition:v:0 attached_pic "$tmp_cover"; then
+            mv "$tmp_cover" "$audio_file"
+        else
+            echo "Warning: Failed to attach cover art from $cover_img"
+            rm -f "$tmp_cover"
+            return 1
+        fi
+    else
+        echo "Warning: Cover image not found at $cover_img"
+        return 1
+    fi
+}
+
 
 current_user=${USER:-$(whoami)}
 url="https://la.hellorayo.co.uk/jazz/Jazz-${time}.mp3"
@@ -37,20 +65,7 @@ if [ "$(stat -c %s "$file" 2>/dev/null || echo 0)" -le 1000 ]; then
 fi
 
 # Embed cover art without re-encoding audio (if the image exists)
-if [ -f "$cover" ]; then
-    tmp_cover="${file%.mp3}.cover.mp3"
-    if ffmpeg -nostdin -loglevel error -y -i "$file" -i "$cover" \
-        -map 0:a -map 1:v -c copy -id3v2_version 3 \
-        -disposition:v:0 attached_pic "$tmp_cover"; then
-        mv "$tmp_cover" "$file"
-    else
-        echo "Warning: Failed to attach cover art from $cover"
-        rm -f "$tmp_cover"
-    fi
-else
-    echo "Warning: Cover image not found at $cover"
-fi
-
+embed_cover "$file" "$cover"
 ls -l "$file"
 
 # Tag the downloaded MP3
