@@ -19,28 +19,39 @@ file=https://$base/jazz/Jazz-$(date --date=@$(($before)) +%Y%m%d)-$start.mp3
 echo $file
 embed_cover() {
     local audio_file="$1"
-    local cover_img="${2:-tower.jpeg}"
+    local cover_img="${2:-${HOME}/Pictures/tower.jpeg}"
 
     if [ ! -f "$audio_file" ]; then
         echo "Error: Audio file not found at $audio_file"
         return 1
     fi
 
-    if [ -f "$cover_img" ]; then
-        local tmp_cover="${audio_file%.mp3}.cover.mp3"
-        echo "$tmp_cover" "$cover_img"
-
-        if ffmpeg -nostdin -loglevel error -y -i "$audio_file" -i "$cover_img" \
-            -map 0:a -map 1:v -c copy -id3v2_version 3 \
-            -disposition:v:0 attached_pic "$tmp_cover"; then
-            mv "$tmp_cover" "$audio_file"
-        else
-            echo "Warning: Failed to attach cover art from $cover_img"
-            rm -f "$tmp_cover"
-            return 1
-        fi
-    else
+    if [ ! -f "$cover_img" ]; then
         echo "Warning: Cover image not found at $cover_img"
+        return 1
+    fi
+
+    local ext="${audio_file##*.}"
+    local ext_lower="${ext,,}"
+    local tmp_cover="${audio_file%.*}.cover.${ext}"
+    local extra_flags=()
+
+    if [ "$ext_lower" = "mp3" ]; then
+        extra_flags=(-id3v2_version 3)
+    elif [ "$ext_lower" != "m4a" ]; then
+        echo "Warning: Unsupported audio format .$ext"
+        return 1
+    fi
+
+    echo "$tmp_cover" "$cover_img"
+
+    if ffmpeg -nostdin -loglevel error -y -i "$audio_file" -i "$cover_img" \
+        -map 0:a -map 1:v -c copy "${extra_flags[@]}" \
+        -disposition:v:0 attached_pic "$tmp_cover"; then
+        mv "$tmp_cover" "$audio_file"
+    else
+        echo "Warning: Failed to attach cover art from $cover_img"
+        rm -f "$tmp_cover"
         return 1
     fi
 }
