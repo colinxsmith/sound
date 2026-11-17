@@ -6,6 +6,35 @@ file=${1:-names.m4a}
 length=${2:-27\:00}
 colin=${3:-pi}
 trixie64=${4:-trixie64}
+
+embed_cover() {
+    local audio_file="$1"
+    local cover_img="${2:-tower.jpeg}"
+
+    if [ ! -f "$audio_file" ]; then
+        echo "Error: Audio file not found at $audio_file"
+        return 1
+    fi
+
+    if [ -f "$cover_img" ]; then
+        local tmp_cover="${audio_file%.mp3}.cover.mp3"
+        echo "$tmp_cover" "$cover_img"
+
+        if ffmpeg -nostdin -loglevel error -y -i "$audio_file" -i "$cover_img" \
+            -map 0:a -map 1:v -c copy -id3v2_version 3 \
+            -disposition:v:0 attached_pic "$tmp_cover"; then
+            mv "$tmp_cover" "$audio_file"
+        else
+            echo "Warning: Failed to attach cover art from $cover_img"
+            rm -f "$tmp_cover"
+            return 1
+        fi
+    else
+        echo "Warning: Cover image not found at $cover_img"
+        return 1
+    fi
+}
+
 radio6="http://lsn.lv/bbcradio.m3u8?station=bbc_6music&bitrate=320000"
 if [ -f /home/$colin/Music/$file ]; then
 rm /home/$colin/Music/$file
@@ -24,6 +53,7 @@ len=$(ls -l /home/$colin/Music/$file | awk '{ print $5 }')
 else
   echo nofile /home/$colin/Music/$file
 fi
+embed_cover "/home/$colin/Music/$file" "/home/$colin/Pictures/tower.jpeg"
 if [ $(uname -n) != $trixie64 ]; then
   scp /home/$colin/Music/$file pi@$trixie64.local:/home/pi/Music
   export MPD_HOST=$trixie64.local
