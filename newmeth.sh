@@ -4,7 +4,7 @@ day=$(date +%w)
 today=$(date +%s)
 off=$(echo $day-${2:-7}|awk -F "-" '{ print (($1-$2>=0?$1-$2:7+$1-$2))*24*3600; }')
 cover=${3:-poppy.jpeg}
-cover=/home/$USER/Pictures/$cover
+cover=${HOME}/Pictures/$cover
 echo $cover
 
 echo $off
