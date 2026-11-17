@@ -9,7 +9,7 @@ trixie64=${4:-trixie64}
 
 embed_cover() {
     local audio_file="$1"
-    local cover_img="${2:-${HOME}/Pictures/tower.jpeg}"
+    local cover_img="${2:-${HOME}/Pictures/poppy.jpeg}"
 
     if [ ! -f "$audio_file" ]; then
         echo "Error: Audio file not found at $audio_file"
@@ -65,7 +65,7 @@ len=$(ls -l /home/$colin/Music/$file | awk '{ print $5 }')
 else
   echo nofile /home/$colin/Music/$file
 fi
-embed_cover "/home/$colin/Music/$file" "/home/$colin/Pictures/tower.jpeg"
+embed_cover "/home/$colin/Music/$file" "/home/$colin/Pictures/poppy.jpeg"
 if [ $(uname -n) != $trixie64 ]; then
   scp /home/$colin/Music/$file pi@$trixie64.local:/home/pi/Music
   export MPD_HOST=$trixie64.local

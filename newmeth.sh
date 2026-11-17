@@ -19,7 +19,7 @@ file=https://$base/jazz/Jazz-$(date --date=@$(($before)) +%Y%m%d)-$start.mp3
 echo $file
 embed_cover() {
     local audio_file="$1"
-    local cover_img="${2:-${HOME}/Pictures/tower.jpeg}"
+    local cover_img="${2:-${HOME}/Pictures/poppy.jpeg}"
 
     if [ ! -f "$audio_file" ]; then
         echo "Error: Audio file not found at $audio_file"

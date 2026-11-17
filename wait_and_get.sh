@@ -5,10 +5,10 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 file=${1:-prog.mp3}
 time=${2:-20251005-0600}
 sleeptime=${3:-300}
-cover=${4:-$HOME/Pictures/tower.jpeg}
+cover=${4:-$HOME/Pictures/poppy.jpeg}
 embed_cover() {
     local audio_file="$1"
-    local cover_img="${2:-${HOME}/Pictures/tower.jpeg}"
+    local cover_img="${2:-${HOME}/Pictures/poppy.jpeg}"
 
     if [ ! -f "$audio_file" ]; then
         echo "Error: Audio file not found at $audio_file"
