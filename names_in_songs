@@ -6,7 +6,7 @@ file=${1:-names.m4a}
 length=${2:-27\:00}
 colin=${3:-pi}
 cover=${4:-ak.jpeg}
-trixie64=${5:-192.168.0.37}
+trixie64=${-192.168.0.37}
 
 embed_cover() {
     local audio_file="$1"
