@@ -67,7 +67,7 @@ else
   echo nofile /home/$colin/Music/$file
 fi
 embed_cover "/home/$colin/Music/$file" "${HOME}/Pictures/${cover}"
-if [[ " $(hostname -I) " == *" ${trixie64} "* ]]; then
+if  [[ ! " $(hostname -I) " == *" ${trixie64} "* ]]; then
   scp /home/$colin/Music/$file pi@$trixie64:/home/pi/Music
   export MPD_HOST=$trixie64
 fi
