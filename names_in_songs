@@ -5,11 +5,12 @@
 file=${1:-names.m4a}
 length=${2:-27\:00}
 colin=${3:-pi}
-trixie64=${4:-trixie64}
+cover=${4:-ak.jpeg}
+trixie64=${5:-192.168.0.37}
 
 embed_cover() {
     local audio_file="$1"
-    local cover_img="${2:-${HOME}/Pictures/tower.jpeg}"
+    local cover_img="${2:-${HOME}/Pictures/${cover}}"
 
     if [ ! -f "$audio_file" ]; then
         echo "Error: Audio file not found at $audio_file"
@@ -65,10 +66,10 @@ len=$(ls -l /home/$colin/Music/$file | awk '{ print $5 }')
 else
   echo nofile /home/$colin/Music/$file
 fi
-embed_cover "/home/$colin/Music/$file" "/home/$colin/Pictures/tower.jpeg"
-if [ $(uname -n) != $trixie64 ]; then
-  scp /home/$colin/Music/$file pi@$trixie64.local:/home/pi/Music
-  export MPD_HOST=$trixie64.local
+embed_cover "/home/$colin/Music/$file" "${HOME}/Pictures/${cover}"
+if [[ " $(hostname -I) " == *" ${trixie64} "* ]]; then
+  scp /home/$colin/Music/$file pi@$trixie64:/home/pi/Music
+  export MPD_HOST=$trixie64
 fi
 echo Finish $(date)
 #mpc --wait update
