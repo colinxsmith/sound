@@ -9,10 +9,11 @@ target_name=${target_name%.mp3} # Strip .mp3 if the user passed it in
 
 current_user=${USER:-$(whoami)}
 user_home=${HOME:-/home/$current_user}
+cover=${3:-tower.jpeg}
 
 tim=$(date +%d_%m_%Y_%H-%M-%S)
 out_dir="$user_home/sound"
-cover="$user_home/Pictures/tower.jpeg"
+cover="$user_home/Pictures/${cover}"
 stream_url="https://worldwide-fm.radiocult.fm/stream"
 outfile="$out_dir/Brownswood_Basement_${tim}.mp3"
 
