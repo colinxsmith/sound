@@ -3,7 +3,7 @@ echo $0 \<time e.g. 2200 for start of recording\> \<day of week Monday is 1\>
 day=$(date +%w)
 today=$(date +%s)
 off=$(echo $day-${2:-7}|awk -F "-" '{ print (($1-$2>=0?$1-$2:7+$1-$2))*24*3600; }')
-cover=${3:-poppy.jpeg}
+cover=${3:-ak.jpeg}
 cover=${HOME}/Pictures/${cover}
 echo $cover
 
@@ -19,7 +19,7 @@ file=https://$base/jazz/Jazz-$(date --date=@$(($before)) +%Y%m%d)-$start.mp3
 echo $file
 embed_cover() {
     local audio_file="$1"
-    local cover_img="${2:-${HOME}/Pictures/poppy.jpeg}"
+    local cover_img="${2:-${HOME}/Pictures/ak.jpeg}"
 
     if [ ! -f "$audio_file" ]; then
         echo "Error: Audio file not found at $audio_file"

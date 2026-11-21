@@ -80,7 +80,7 @@ if [[ "$station_url" != http://* && "$station_url" != https://* && ! -f "$statio
 fi
 
 # Cover art input (4th argument: accepts direct path or filename in ~/Pictures)
-cover_input="${4:-poppy.jpeg}"
+cover_input="${4:-ak.jpeg}"
 if [[ -f "$cover_input" ]]; then
     cover_art="$cover_input"
 else

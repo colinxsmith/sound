@@ -12,7 +12,7 @@ if ! command -v ffmpeg >/dev/null 2>&1; then
 fi
 
 target_file="$1"
-picture="${2:-poppy.jpeg}"
+picture="${2:-ak.jpeg}"
 username="${3:-${USER:-pi}}"
 picture_path="/home/${username}/Pictures/${picture}"
 
