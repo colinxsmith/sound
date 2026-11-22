@@ -44,7 +44,8 @@ esac
 
 # Defaults
 length="${1:-02:00:00}"
-username="${USER:-pi}"
+username="${USER:-$(id -un)}"
+echo $username
 server_ip="192.168.0.37"
 
 # Build timestamp and default .m4a filename
